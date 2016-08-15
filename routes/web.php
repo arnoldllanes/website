@@ -18,3 +18,7 @@ Route::get('/', function()
     return view('pages.home');
     // return view('welcome')->with('tweets', $tweets);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

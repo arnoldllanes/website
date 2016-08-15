@@ -97,33 +97,8 @@
 	<div class="box-wrap">
 		<header role="banner" id="fh5co-header">
 			<div class="container">
-				<nav class="navbar navbar-default">
-					<div class="row">
-						<div class="col-md-3">
-							<div class="fh5co-navbar-brand">
-								<a class="fh5co-logo" href="index.html"><img src="images/logo.png" style="background-color:black" alt="Closest Logo"></a>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<ul class="nav text-center">
-								<li class="active"><a href="index.html"><span>Work</span></a></li>
-								<li><a href="inside.html">About Us</a></li>
-								<li><a href="inside.html">Blog</a></li>
-								<li><a href="services.html">Trello Board</a></li>
-								<li><a href="services.html">SDPHP</a></li>
-								<li><a href="contact.html">Resources</a></li>
-							</ul>
-						</div>
-						<div class="col-md-3">
-							<ul class="social">
-								<li><a href="#"><i class="icon-twitter"></i></a></li>
-								<li><a href="#"><i class="icon-dribbble"></i></a></li>
-								<li><a href="#"><i class="icon-instagram"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-		  </div>
+				@include('layouts.navigation')	
+		 	</div>
 		</header>
 		<!-- END: header -->
 		<section id="intro" style="padding-bottom: 0">
@@ -143,7 +118,7 @@
 			<div class="container">
 				<div class="row" style="height: 239">
 					<div class="col-md-6">
-						<h2 class="text-center animate-box"><img src="images/meetupicon.png">Join our meet up!</h2>
+						<a target="__Blank" href="http://www.meetup.com/San-Diego-Laravel-Meetup/"><h2 class="text-center animate-box"><img src="images/meetupicon.png">Join our meet up!</h2></a>
 						<div class="fh5co-grid animate-box" style="background-image: url(images/meetup.jpeg);">
 							<meetup></meetup>
 						</div>
@@ -151,11 +126,15 @@
 					<div class="col-md-6">
 						<h2 class="text-center animate-box">Our latest blog post</h2>
 						<div class="fh5co-grid animate-box" style="background-image: url(images/work-2.jpg);">
-							<div class="image-popup text-center" href="#">
-								<div class="work-title">
-									<h3>Don’t Just Stand There</h3>
-									<span>Illustration, Print</span>
+							<div class="image-popup text-center">
+								<div class="post animate-box">
+								<a href="#"><img src="images/blogicon.png" alt="Product"></a>
+								<div>
+									<h3><a href="#">Camera Lenses</a></h3>
+									<p>Far far away, behind the word, far from the countries Vokalia</p>
+									<span><a href="#">Learn More...</a></span>
 								</div>
+							</div>
 							</div>
 						</div>
 					</div>
