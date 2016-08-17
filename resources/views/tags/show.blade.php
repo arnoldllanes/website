@@ -5,20 +5,20 @@
 			<div class="container">
 				<div class="row animate-box">
 					<div class="col-md-12 section-heading text-center">
-						<h2>Blog Archive</h2>
+						<h2>{{ $tag->name }}<h2>
 						<div class="row">
 							<div class="col-md-6 col-md-offset-3 subtext">
-								<p>Check out the collection of blogs and/or presentations done at the San Diego Laravel Meet Up. Enjoy!</p>
+								<p>List of all articles associated with the tag "{{ $tag->name }}". Enjoy!</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					@foreach($articles as $article)
+				@foreach($tag->articles as $article)
 					<div class="post-entry">
 						<div class="col-md-6">
 							<div class="post animate-box">
-								<a href="/articles/{{ $article->id }}"><img src="images/blogicon.png" alt="Product"></a>
+								<a href="/articles/{{ $article->id }}"><img src="/images/blogicon.png" alt="Product"></a>
 								<div>
 									<h3><a href="/articles/{{ $article->id }}">{{ str_limit($article->title, $limit = 25, $end = '...') }}</a></h3>
 									<p>{{ str_limit($article->body, $limit = 25, $end = '...') }}</p>
@@ -35,9 +35,8 @@
 							</div>
 						</div>
 					</div>
-					@endforeach
+				@endforeach
 				</div>
 			</div>
 		</section>
-
 @endsection

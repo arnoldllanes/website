@@ -1,11 +1,16 @@
 <header role="banner" id="fh5co-header">
 <div class="container">
-
 	<nav class="navbar navbar-default">
 		<div class="row">
 			<div class="col-md-3">
 				<div class="fh5co-navbar-brand">
-					<a class="fh5co-logo" href="index.html"><img src="/images/logo.png" style="background-color:black" alt="Closest Logo"></a>
+				@if(!Auth::guest())
+					<a class="fh5co-logo" href="/home">
+				@else
+					<a class="fh5co-logo" href="/"></a>
+				@endif
+						<img src="/images/logo.png" style="background-color:black" alt="Closest Logo">
+					</a>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -16,6 +21,9 @@
 					<li><a target="__Blank" href="https://trello.com/b/H7RSRe8m/public-laravel-sdug-board">Trello Board</a></li>
 					<li><a target="__Blank" href="http://www.sdphp.org/">SDPHP</a></li>
 					<li><a href="contact.html">Resources</a></li>
+					@if(!Auth::guest())
+					<li><a href="/home">>To Dashboard<</a></li>
+					@endif
 				</ul>
 			</div>
 			<div class="col-md-3">

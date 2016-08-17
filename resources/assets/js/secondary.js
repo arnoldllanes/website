@@ -7,7 +7,7 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-// window.$ = window.jQuery = require('jquery');
+window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass/assets/javascripts/bootstrap');
 
 /**
@@ -17,7 +17,7 @@ require('bootstrap-sass/assets/javascripts/bootstrap');
  */
 
 window.Vue = require('vue');
-require('vue-resource');
+
 
 /**
  * We'll register a HTTP interceptor to attach the "XSRF" header to each of
@@ -26,7 +26,7 @@ require('vue-resource');
  */
 
 Vue.http.interceptors.push(function (request, next) {
-    // request.headers['X-CSRF-TOKEN'] = Laravel.csrfToken;
+    request.headers['X-CSRF-TOKEN'] = Laravel.csrfToken;
 
     next();
 });

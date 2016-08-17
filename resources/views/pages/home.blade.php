@@ -24,18 +24,19 @@
 		</div>
 
 <div class="col-md-6">
-	<h2 class="text-center animate-box">Our Latest Blog Post</h2>
+	<h2 class="text-center animate-box">Latest Blog Post</h2>
 	<div class="fh5co-grid animate-box" style="background-image: url(images/work-2.jpg);">
 		<div class="image-popup text-center">
 			<div class="post animate-box">
 			<a href="#"><img src="images/blogicon.png" alt="Product"></a>
 			<div>
-				<h3><a href="#">Latest Blog Post here</a></h3>
-				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
-				<span><a href="#">Learn More...</a></span>
+				<h3><a href="/articles/{{ $latest_article->id }}">{{ $latest_article->title }}</a></h3>
+				<!-- <p>{{ str_limit($latest_article->body, $limit = 25, $end = '...') }}</p> -->
+				<p>Presented by: {{ $latest_article->user->name }}</p>
+				<span><a href="/articles/{{ $latest_article->id }}">Read Article...</a></span>
 			</div>
 			<hr>
-			<a type="button" class="btn btn-primary">View Blog Archive</a>
+			<a type="button" class="btn btn-primary" href="/articles">View Blog Archive</a>
 		</div>
 		</div>
 	</div>

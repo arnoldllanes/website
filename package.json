@@ -16,6 +16,5 @@
     "vue-resource": "^0.9.3"
   },
   "dependencies": {
-    "vue-animate": "0.0.4"
   }
 }

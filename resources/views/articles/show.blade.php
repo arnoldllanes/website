@@ -11,7 +11,7 @@
 						<p class="animate-box" style="display:inline-block">
 						Tags: 
 							@foreach($article->tags as $tag)
-								<li class="animate-box" style="display: inline-block"> {{ $tag->name }}</li>
+								<li class="animate-box" style="display: inline-block"> <a href="/tags/{{ $tag->id }}">{{ $tag->name }}</a></li>
 							@endforeach
 						</p>
 					</div>

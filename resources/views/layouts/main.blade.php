@@ -98,10 +98,9 @@
 	<body>
 	<div class="box-wrap">
 		@include('layouts.navigation')
-
-		@yield('content')
-
 		@include('partials.flash')
+		
+		@yield('content')
 
 		<footer id="footer" role="contentinfo">
 			<div class="container">
@@ -136,8 +135,6 @@
 		$('#tag_list').select2({
 			placeholder: 'Choose a tag'
 		});
-
-		alert('is this working?');
 	</script>
 	
 	</body>

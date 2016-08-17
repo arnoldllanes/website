@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <h2><a href="/articles/create">Create an article</a></h2>
                 </div>
             </div>
         </div>

@@ -9,6 +9,11 @@ use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
+
+	public function __construct() 
+	{
+		$this->middleware('auth', ['except' => ['index', 'show']]);
+	}
 	/**
 	 * Display listing of the resource.
 	 * 
@@ -22,6 +27,12 @@ class ArticleController extends Controller
     	return view('articles.index')->with('articles', $articles);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return Response
+     **/
     public function show($id)
     {
     	$article = Article::where('id', $id)->firstOrfail();

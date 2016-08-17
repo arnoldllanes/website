@@ -6,7 +6,6 @@
  */
 
 require('./bootstrap');
-require('vue-animate/dist/vue-animate.min.css')
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
