@@ -68,9 +68,9 @@ class Article extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author()
+    public function presenter()
     {
-        return $this->belongsTo('App\Presenter', 'author_id');
+        return $this->belongsTo('App\Presenter', 'presenter_id');
     }
 
     /**

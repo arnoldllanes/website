@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Tag;
 use App\Article;
+use App\Presenter;
 use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
@@ -116,18 +117,30 @@ class ArticleController extends Controller
    */
    private function createArticle(ArticleRequest $request)
    {
-       dd($request);
+       $presenter = Presenter::where('name', $request->presenter)->first();
+       
+       if(!$presenter){
+          $presenter = new Presenter([
+            'name' => $request->presenter,
+            'email' => $request->presenter_email,
+            'website' => $request->presenter_website
+          ]);
+       }
 
-      // $article = Auth::user()->articles()->create($request->all());
+       if($presenter){
+          $presenter->email = $request->presenter_email;
+          $presenter->website = $request->presenter_website;
 
-         //Need some starter for the presenter here
-         //ex:) $presenter = Presenter::where('name', $request->author);
-         //if(!$presenter){
-         //   $presenter = Presenter::myArticles()->create([
-         //       'name' => $request->author
-         //    ])
-         //
-        //  }
+          $presenter->save();
+       }
+
+       $article = Auth::user()->articles()->create([
+          'user_id' => Auth::user()->id,
+          'presenter_id' => $presenter->id,
+          'published_at'  => $request->published_at,
+          'title' => $request->title,
+          'body' => $request->body
+        ]);
 
          $this->syncTags($article, $request->input('tag_list'));
 

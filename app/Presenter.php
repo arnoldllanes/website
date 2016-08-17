@@ -12,6 +12,6 @@ class Presenter extends Model
      */
     public function myArticles()
     {
-    	return $this->hasMany('App\Article', 'author_id');
+    	return $this->hasMany('App\Article', 'presenter_id');
     }
 }

@@ -4,8 +4,16 @@
 			<input class="form-control" type="text" name="title" id="title">
 	</div>
 	<div class="form-group">
-		<label for="author">Author:</label>
-		<input type="text" class="form-control" name="author" id="author">
+		<label for="presenter">Presenter:</label>
+		<input type="text" class="form-control" name="presenter" id="presenter">
+	</div>
+	<div class="form-group">
+		<label for="presenter_email">Presenter's email:
+			<input type="text" class="form-control" name="presenter_email" id="presenter_email">
+		</label>
+		<label for="presenter_website">Presenter's website:
+			<input type="text" class="form-control" name="presenter_website" id="presenter_website">
+		</label>
 	</div>
 	<div class="form-group">
 		<label for="published_at">Publish article on: </label>
@@ -14,6 +22,7 @@
 	<div class="form-group">
 		<label for="tag">Tag(s): </label>
 		 <select class="js-example-basic-multiple js-states form-control" name="tag_list[]" id="tag_list" multiple="multiple">
+		 		<option>Create new tag ...</option>
 		 	@foreach($tags as $tag)
 		 		<option value="{{ $tag->id }}">{{ $tag->name }}</option>
 		 	@endforeach
