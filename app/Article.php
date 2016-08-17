@@ -54,14 +54,24 @@ class Article extends Model
     }
 
     /**
-     * Author of the article.
+     * Publisher of the article.
      * 
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
-    } 
+    }
+
+    /**
+     *  Author of article
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo('App\Presenter', 'author_id');
+    }
 
     /**
      * An article can have many tags.

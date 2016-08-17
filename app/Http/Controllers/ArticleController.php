@@ -41,6 +41,11 @@ class ArticleController extends Controller
     	return view('articles.show')->with('article', $article);
     }
 
+    /**
+     * Display form to create an article.
+     *
+     * @return Response
+     */
     public function create()
    {
          $tags = Tag::all('name', 'id');
@@ -49,10 +54,14 @@ class ArticleController extends Controller
    }
 
 
-   //This type hint is from the CreateArticleRequest under App\Requests... The body of this method will not fire unless the validation passes
+   /**
+    * Store the data to create an create.
+    * 
+    * @return Response
+    */
    public function store(ArticleRequest $request)
    {
-         $this->createArticle($request);
+      $this->createArticle($request);
 
    		return redirect('articles')->with([
             'flash_message'   => 'Your article has been created',
@@ -60,6 +69,11 @@ class ArticleController extends Controller
         ]);
    }
 
+   /**
+    * Display the article for editing.
+    *
+    * @return Reponse
+    */
    public function edit(Article $article)
    {
       $tags = Tag::lists('name', 'id');
@@ -67,6 +81,12 @@ class ArticleController extends Controller
       return view('articles.edit')->with('article', $article)->with('tags', $tags);
    }
 
+
+   /**
+    * Update the article.
+    *
+    * @return Response
+    */
    public function update(ArticleRequest $request, Article $article)
    {
 
@@ -77,7 +97,11 @@ class ArticleController extends Controller
       return redirect('articles');
    }
 
-#Sync up the list of tags in the database
+   /**
+    * Sync the list of teags in the database
+    *
+    * @return Reponse
+    */
    private function syncTags(Article $article, $tags)
    {
       
@@ -85,11 +109,25 @@ class ArticleController extends Controller
    
    }
 
-#Save a new article
+  /**
+   * Logic to create a new article 
+   *
+   * @return $article
+   */
    private function createArticle(ArticleRequest $request)
    {
-       //Create an article with the attributes from the form
-         $article = Auth::user()->articles()->create($request->all());
+       dd($request);
+
+      // $article = Auth::user()->articles()->create($request->all());
+
+         //Need some starter for the presenter here
+         //ex:) $presenter = Presenter::where('name', $request->author);
+         //if(!$presenter){
+         //   $presenter = Presenter::myArticles()->create([
+         //       'name' => $request->author
+         //    ])
+         //
+        //  }
 
          $this->syncTags($article, $request->input('tag_list'));
 
