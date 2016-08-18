@@ -6,20 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-	/**
-	 *  Attributes that are mass assignable.
-	 */
+    /**
+     *  Attributes that are mass assignable.
+     */
     protected $fillable = [
-		'name'
-	];
+        'name'
+    ];
 
-	/**
-	 * Tags can be associated with many articles.
-	 *
-	 * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
-	 */
+    /**
+     * Tags can be associated with many articles.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function articles()
     {
-   		return $this->belongsToMany('App\Article');
+        return $this->belongsToMany('App\Article');
     }
 }

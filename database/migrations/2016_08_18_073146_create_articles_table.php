@@ -21,12 +21,12 @@ class CreateArticlesTable extends Migration
 
             $table->integer('presenter_id')->unsigned();
             $table->foreign('presenter_id')->references('id')->on('presenters')->onDelete('cascade');
-            
-            $table->string('title');  
-            $table->text('body');       
+
+            $table->string('title');
+            $table->text('body');
             $table->timestamp('published_at');
             $table->timestamps();
-           
+
         });
     }
 

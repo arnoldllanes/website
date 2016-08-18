@@ -28,9 +28,9 @@ class User extends Authenticatable
     ];
 
     /**
-     * A user can be associated with many articles 
+     * A user can be associated with many articles
      *
-     ^ @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * ^ @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function articles()
     {

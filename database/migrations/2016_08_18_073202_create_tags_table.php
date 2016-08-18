@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTagsTable extends Migration
 {
-/**
+    /**
      * Run the migrations.
      *
      * @return void
@@ -19,14 +19,13 @@ class CreateTagsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('article_tag', function(Blueprint $table) 
-        {
+        Schema::create('article_tag', function (Blueprint $table) {
             $table->integer('article_id')->unsigned()->index();
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
 
             $table->integer('tag_id')->unsigned()->index();
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }

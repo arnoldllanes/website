@@ -7,34 +7,36 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-	/**
-	 *  Attributes that are mass assignable.
-	 */
+    /**
+     *  Attributes that are mass assignable.
+     */
     protected $fillable = [
-	    'title',
-	    'body',
+        'title',
+        'body',
         'presenter_id',
-	    'published_at',
-    ]; 
+        'published_at',
+    ];
 
     protected $dates = ['published_at'];
 
     /**
-     * Scope to modify query instance to return articles that have been published according to date. 
+     * Scope to modify query instance to return articles that have been published according to date.
      * Article::published($value);
      *
      * @return $query
      */
-    
-    public function scopePublished($query){
-    	$query->where('published_at', '<=', Carbon::now());
+
+    public function scopePublished($query)
+    {
+        $query->where('published_at', '<=', Carbon::now());
     }
 
     /**
      * Scope to modify query isntance to return articles that have NOT been published according to date
      */
-    public function scopeUnpublished($query){
-    	$query->where('published_at', '>', Carbon::now());
+    public function scopeUnpublished($query)
+    {
+        $query->where('published_at', '>', Carbon::now());
     }
 
     /**
@@ -42,8 +44,9 @@ class Article extends Model
      *
      * @return $date
      */
-    public function setPublishAtAttribute($date){
-    	$this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d', $date);
+    public function setPublishAtAttribute($date)
+    {
+        $this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d', $date);
     }
 
     /**
@@ -56,7 +59,7 @@ class Article extends Model
 
     /**
      * Publisher of the article.
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function publisher()
@@ -76,7 +79,7 @@ class Article extends Model
 
     /**
      * An article can have many tags.
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relations\BelongstoMany
      */
     public function tags()
@@ -91,6 +94,6 @@ class Article extends Model
      */
     public function getTagListAttribute()
     {
-        return $this->tags->lists('id')->all();    
+        return $this->tags->lists('id')->all();
     }
 }
