@@ -5,16 +5,22 @@
 			<div class="container">
 				<div class="row animate-box">
 					<div class="col-md-12 section-heading text-center">
-						<h2>{{ $tag->name }}<h2>
+						<h2>{{ $presenter->name }}<h2>
+						@if($presenter->email)
+						<p style="display: inline-block"><strong>Email:</strong> {{ $presenter->email }}</p>
+						@endif
+						@if($presenter->website)
+						<p style="display: inline-block"><strong>Website:</strong> <a target="__Blank" href="http://{{ $presenter->website }}">{{ $presenter->website }}</a></p>
+						@endif
 						<div class="row">
 							<div class="col-md-6 col-md-offset-3 subtext">
-								<p>List of all articles associated with the tag "{{ $tag->name }}". Enjoy!</p>
+								<p>List of all articles associated with "{{ $presenter->name }}". Enjoy!</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row">
-				@foreach($tag->articles as $article)
+				@foreach($presenter->myArticles as $article)
 					<div class="post-entry">
 						<div class="col-md-6">
 							<div class="post animate-box">

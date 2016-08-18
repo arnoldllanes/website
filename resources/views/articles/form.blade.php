@@ -1,15 +1,15 @@
 <form>
 	<div class="form-group">
 		<label for="title">Title:</label>
-			<input class="form-control" type="text" name="title" id="title">
+			<input class="form-control" type="text" name="title" id="title" required>
 	</div>
 	<div class="form-group">
 		<label for="presenter">Presenter:</label>
-		<input type="text" class="form-control" name="presenter" id="presenter">
+		<input type="text" class="form-control" name="presenter" id="presenter" required>
 	</div>
 	<div class="form-group">
 		<label for="presenter_email">Presenter's email:
-			<input type="text" class="form-control" name="presenter_email" id="presenter_email">
+			<input type="email" class="form-control" name="presenter_email" id="presenter_email">
 		</label>
 		<label for="presenter_website">Presenter's website:
 			<input type="text" class="form-control" name="presenter_website" id="presenter_website">
@@ -30,7 +30,7 @@
 	</div>
 	<div class="form-group">
 		<label for="body">Content: </label>
-		<textarea name="body" id="body" class="form-control" rows=75></textarea>
+		<textarea name="body" id="body" class="form-control" rows=15></textarea>
 	</div>
 	<div class="form-group">		
 		<button type="submit" class="btn btn-default">Submit Article</button>

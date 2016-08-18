@@ -23,7 +23,7 @@ class ArticleController extends Controller
     public function index()
     {
     	$articles = Article::latest()->get();
-    	$articles->load('tags','user');
+    	$articles->load('tags', 'publisher', 'presenter');
 
     	return view('articles.index')->with('articles', $articles);
     }
@@ -37,7 +37,7 @@ class ArticleController extends Controller
     public function show($id)
     {
     	$article = Article::where('id', $id)->firstOrfail();
-    	$article->load('tags', 'user');
+    	$article->load('tags', 'publisher');
 
     	return view('articles.show')->with('article', $article);
     }
@@ -119,21 +119,21 @@ class ArticleController extends Controller
    {
        $presenter = Presenter::where('name', $request->presenter)->first();
        
+        if($presenter){
+          $presenter->email = $request->presenter_email;
+          $presenter->website = $request->presenter_website;
+       }
+
        if(!$presenter){
           $presenter = new Presenter([
             'name' => $request->presenter,
             'email' => $request->presenter_email,
             'website' => $request->presenter_website
-          ]);
+          ]);     
        }
-
-       if($presenter){
-          $presenter->email = $request->presenter_email;
-          $presenter->website = $request->presenter_website;
-
-          $presenter->save();
-       }
-
+       
+       $presenter->save();
+  
        $article = Auth::user()->articles()->create([
           'user_id' => Auth::user()->id,
           'presenter_id' => $presenter->id,
@@ -143,7 +143,7 @@ class ArticleController extends Controller
         ]);
 
          $this->syncTags($article, $request->input('tag_list'));
-
+         
          return $article;
    }
 }

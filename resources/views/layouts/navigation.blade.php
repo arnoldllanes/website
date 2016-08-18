@@ -6,11 +6,14 @@
 				<div class="fh5co-navbar-brand">
 				@if(!Auth::guest())
 					<a class="fh5co-logo" href="/home">
-				@else
-					<a class="fh5co-logo" href="/"></a>
-				@endif
 						<img src="/images/logo.png" style="background-color:black" alt="Closest Logo">
 					</a>
+				@else
+					<a class="fh5co-logo" href="/">
+						<img src="/images/logo.png" style="background-color:black" alt="Closest Logo">
+					</a>
+				@endif
+						
 				</div>
 			</div>
 			<div class="col-md-6">

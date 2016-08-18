@@ -29,6 +29,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    /**
+     * Display the home page in resources/pages/home.blade.php
+     *
+     * @return Response
+     */ 
     public function home()
     {
         $latest_article = Article::published()->latest()->firstOrFail();

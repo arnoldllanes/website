@@ -20,9 +20,9 @@
 							<div class="post animate-box">
 								<a href="/articles/{{ $article->id }}"><img src="images/blogicon.png" alt="Product"></a>
 								<div>
-									<h3><a href="/articles/{{ $article->id }}">{{ str_limit($article->title, $limit = 25, $end = '...') }}</a></h3>
-									<p>{{ str_limit($article->body, $limit = 25, $end = '...') }}</p>
-									<p>Presented by: {{ $article->user->name }}</p>
+									<h3><a href="/articles/{{ $article->id }}">{{ $article->title }}</a></h3>
+									<!-- <p>{{ str_limit($article->body, $limit = 25, $end = '...') }}</p> -->
+									<p>Presented by: <a href="/presenter/{{ $article->presenter->id }}">{{ $article->presenter->name }}</a></p>
 									<p>Published on: {{ $article->published_at }}</p>
 									<p>Tags: 
 										@foreach($article->tags->slice(0, 2) as $tag)

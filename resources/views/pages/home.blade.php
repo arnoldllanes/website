@@ -32,7 +32,7 @@
 			<div>
 				<h3><a href="/articles/{{ $latest_article->id }}">{{ $latest_article->title }}</a></h3>
 				<!-- <p>{{ str_limit($latest_article->body, $limit = 25, $end = '...') }}</p> -->
-				<p>Presented by: {{ $latest_article->user->name }}</p>
+				<p>Presented by: {{ $latest_article->presenter->name }}</p>
 				<span><a href="/articles/{{ $latest_article->id }}">Read Article...</a></span>
 			</div>
 			<hr>

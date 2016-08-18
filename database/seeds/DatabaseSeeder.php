@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class DatabaseSeeder extends Seeder
 {
 	private $tables = [
-		'users'
+		// 'users',
+        'presenters',
 	];
     /**
      * Run the database seeds.
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
     	$this->cleanDatabase();
 
-        $this->call(UsersTableSeeder::class);
+        $this->call(PresentersTableSeeder::class);
     }
 
     private function cleanDatabase()
@@ -34,13 +35,30 @@ class DatabaseSeeder extends Seeder
     }
 }
 
-	class UsersTableSeeder extends Seeder {
-		public function run()
-		{
-			factory(App\User::class, 6)->create()->each(function($user) {
-				$user->articles()->save(factory(App\Article::class)->make())->each(function($article) {
-					$article->tags()->save(factory(App\Tag::class)->make());
-				});
-			});
-		}
-	}
+	// class UsersTableSeeder extends Seeder {
+	// 	public function run()
+	// 	{
+ //            $faker = Faker::create();
+
+ //            foreach(range(1,5) as $index)
+ //            {
+ //                User::create([
+ //                    'name' => $faker->name,
+ //                    'email' => $faker->safeEmail,
+ //                    'password' => bcrypt(str_random(10))
+ //                ]);
+ //            }
+	// 	}
+	// }
+
+    class PresentersTableSeeder extends Seeder {
+        public function run()
+        {
+            factory(App\Presenter::class, 6)->create()->each(function($presenter) {
+                $presenter->myArticles()->save(factory(App\Article::class)->make())->each(function($article) {
+                    $article->tags()->save(factory(App\Tag::class)->make());
+                });
+            });
+        }
+    }
+

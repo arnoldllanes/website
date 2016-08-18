@@ -13,6 +13,7 @@ class Article extends Model
     protected $fillable = [
 	    'title',
 	    'body',
+        'presenter_id',
 	    'published_at',
     ]; 
 
@@ -58,7 +59,7 @@ class Article extends Model
      * 
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function publisher()
     {
         return $this->belongsTo('App\User', 'user_id');
     }
