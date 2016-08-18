@@ -8,7 +8,7 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Raleway:100,400,300,600' rel='stylesheet' type='text/css'>
 
         <!-- Styles -->
         <style>
@@ -62,28 +62,25 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .tweet {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-            @endif
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="tweet-list">
+                    @include('tweets.list')
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
         </div>

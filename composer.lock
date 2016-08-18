@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "17305a6dd494a69fabd54bf6e8fffe9d",
-    "content-hash": "8590ceeb93631fa1815928de23258a58",
+    "hash": "38f8fb254e3dc285c748f966017e3519",
+    "content-hash": "5cdc2a26bf98362e686fd50064a13146",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -312,12 +312,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "5cce34bcec0859c4aae232c9fde15d3a44b16dfe"
+                "reference": "3d74b25c9f5c9c340d9d7a776ad878ce333bca5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5cce34bcec0859c4aae232c9fde15d3a44b16dfe",
-                "reference": "5cce34bcec0859c4aae232c9fde15d3a44b16dfe",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3d74b25c9f5c9c340d9d7a776ad878ce333bca5c",
+                "reference": "3d74b25c9f5c9c340d9d7a776ad878ce333bca5c",
                 "shasum": ""
             },
             "require": {
@@ -422,7 +422,7 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
+                    "email": "taylorotwell@gmail.com"
                 }
             ],
             "description": "The Laravel Framework.",
@@ -431,7 +431,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-08-13 16:24:21"
+            "time": "2016-08-10 21:35:54"
         },
         {
             "name": "league/flysystem",
@@ -1805,6 +1805,92 @@
                 "dump"
             ],
             "time": "2016-07-26 08:04:17"
+        },
+        {
+            "name": "themattharris/tmhoauth",
+            "version": "0.8.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/themattharris/tmhOAuth.git",
+                "reference": "455552d6c57549632644b6c9ac9204766be2b5ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/themattharris/tmhOAuth/zipball/455552d6c57549632644b6c9ac9204766be2b5ee",
+                "reference": "455552d6c57549632644b6c9ac9204766be2b5ee",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "tmhOAuth": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "themattharris",
+                    "email": "matt@themattharris.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An OAuth library written in PHP by @themattharris",
+            "keywords": [
+                "oauth",
+                "twitter"
+            ],
+            "time": "2014-08-06 22:29:35"
+        },
+        {
+            "name": "thujohn/twitter",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thujohn/twitter.git",
+                "reference": "137dfa006ad06b956d579ff3ce0ffa5d03506188"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thujohn/twitter/zipball/137dfa006ad06b956d579ff3ce0ffa5d03506188",
+                "reference": "137dfa006ad06b956d579ff3ce0ffa5d03506188",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.*|5.*",
+                "php": ">=5.4.0",
+                "themattharris/tmhoauth": "0.8.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Thujohn\\Twitter": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "thujohn",
+                    "email": "jonathan.thuau@gmail.com"
+                }
+            ],
+            "description": "Twitter API for Laravel",
+            "keywords": [
+                "laravel",
+                "laravel4",
+                "laravel5",
+                "twitter"
+            ],
+            "time": "2016-04-08 11:43:15"
         },
         {
             "name": "vlucas/phpdotenv",

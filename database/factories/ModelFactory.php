@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -17,5 +19,32 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Article::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence(5),
+        'body' => $faker->paragraph(4),
+        'user_id' => factory(App\User::class)->create()->id,
+        'published_at' => Carbon::now(),
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+    ];
+});
+
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->sentence(1),
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+    ];
+});
+
+$factory->define(App\Presenter::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->safeEmail,
+        'website' => $faker->domainName,
     ];
 });
