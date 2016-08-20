@@ -38,10 +38,9 @@
         },
         methods: {
             fetchNextMeetUp: function () {
-                Vue.http.get('https://flickering-heat-5459.firebaseio.com/meetups/San-Diego-Laravel-Meetup.json').then((response) = > {
+                Vue.http.get('https://flickering-heat-5459.firebaseio.com/meetups/San-Diego-Laravel-Meetup.json').then((response) => {
                     this.$set('meetup', response.data);
-            })
-                ;
+            });
             }
         }
     }

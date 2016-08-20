@@ -17,6 +17,7 @@
           content="Laravel, San Diego Laravel, San Diego Laravel Meet Up, San Diego Laravel Meet Up Group, Laravel Meet Up Group"/>
     <meta name="author" content="sdlug"/>
 
+
 <!--
 	//////////////////////////////////////////////////////
 
@@ -41,6 +42,7 @@
     <meta name="twitter:image" content=""/>
     <meta name="twitter:url" content=""/>
     <meta name="twitter:card" content=""/>
+    <meta id="_token" content="{{ csrf_token() }}">
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -133,8 +135,6 @@
 <script src="/js/jquery.min.js"></script>
 <!-- jQuery Easing -->
 <script src="/js/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script src="/js/bootstrap.min.js"></script>
 <!-- Waypoints -->
 <script src="/js/jquery.waypoints.min.js"></script>
 <!-- Main JS (Do not remove) -->

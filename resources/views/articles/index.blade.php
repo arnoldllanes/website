@@ -23,8 +23,8 @@
                                 <div>
                                     <h3><a href="/articles/{{ $article->id }}">{{ $article->title }}</a></h3>
                                 <!-- <p>{{ str_limit($article->body, $limit = 25, $end = '...') }}</p> -->
-                                    <p>Presented by: <a
-                                                href="/presenter/{{ $article->presenter->id }}">{{ $article->presenter->name }}</a>
+                                    <p>Presented by: 
+                                        <a href="/presenter/{{ $article->presenter->id }}">{{ $article->presenter->name }}</a>
                                     </p>
                                     <p>Published on: {{ $article->published_at }}</p>
                                     <p>Tags:

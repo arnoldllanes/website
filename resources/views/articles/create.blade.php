@@ -9,4 +9,6 @@
         @include('articles.form')
     </form>
 
+    	@include('partials.modals.create-tag')
+
 @endsection
