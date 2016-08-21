@@ -56,7 +56,15 @@ class TagController extends Controller
      * @return Response
      */
     public function store(Request $request)
-    {
+    {   
+        $tag = Tag::where('name', $request->name)->first();
+        if($tag){ 
+            return back()->with([
+                'flash_message' => $request->name . ' has been added to tags list',
+                'flash_message_important' => true
+            ])
+        }
+
         Tag::create($request->all());
 
         return back()->with([
