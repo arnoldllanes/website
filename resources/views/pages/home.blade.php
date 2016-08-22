@@ -30,7 +30,8 @@
                     <div class="fh5co-grid animate-box" style="background-image: url(images/work-2.jpg);">
                         <div class="image-popup text-center">
                             <div class="post animate-box">
-                                <a href="#"><img src="images/blogicon.png" alt="Product"></a>
+                                <img src="images/blogicon.png" alt="Product">
+                                @if($latest_article)
                                 <div>
                                     <h3><a href="/articles/{{ $latest_article->id }}">{{ $latest_article->title }}</a>
                                     </h3>
@@ -40,6 +41,15 @@
                                 </div>
                                 <hr>
                                 <a type="button" class="btn btn-primary" href="/articles">View Blog Archive</a>
+                                @else
+                                <div class="work-title">
+                                    <h3>Sorry!!!</h3>
+                                    <p>No blog posts at this time.</p>
+                                    @if(!Auth::guest())
+                                        <a type="button" class="btn btn-primary" href="/articles/create">Create Blog Post</a>
+                                    @endif
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

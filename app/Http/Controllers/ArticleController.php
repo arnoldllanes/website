@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Auth;
 use App\Tag;
 use App\Article;
@@ -51,7 +52,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $tags = Tag::all('name', 'id');
+        $tags = DB::table('tags')->orderBy('name', 'ASC')->get();
 
         return view('articles.create')->with('tags', $tags);
     }
