@@ -54,6 +54,11 @@
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <a class="twitter-timeline" href="https://twitter.com/sandiegolaravel">Tweets by TwitterDev</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+
                 <div class="col-md-12">
                     <h2 class="text-center animate-box">Our Sponsors</h2>
                     <div class="fh5co-grid animate-box"
