@@ -28,8 +28,17 @@ class CreateTagsTable extends Migration
 
             $table->timestamps();
         });
-    }
 
+    /**
+     * Insert default tag values
+     */
+    $default_tags = array('Laravel 5.2', 'Laravel 5.3', 'Vue.js', 'Angular.js', 'Libraries', 'Packages', 'General', 'Presentations');
+    foreach($default_tags as $tag) {
+        DB::table('tags')->insert(array(
+            'name' => $tag
+        ));
+    }
+}
     /**
      * Reverse the migrations.
      *

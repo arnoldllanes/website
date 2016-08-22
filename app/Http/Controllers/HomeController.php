@@ -36,7 +36,7 @@ class HomeController extends Controller
      */
     public function home()
     {
-        $latest_article = Article::published()->latest()->firstOrFail();
+        $latest_article = Article::published()->latest()->first();
 
         return view('pages.home')->with('latest_article', $latest_article);
     }

@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
+use Response;
+use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display listing of the resource.
      *
@@ -16,6 +24,15 @@ class TagController extends Controller
         $tags = Tag::all();
 
         return view('tags.index')->with('tags', $tags);
+    }
+
+    public function getTags()
+    {
+        $tags = Tag::all();
+
+        return Response::json([
+            'tags' => $tags
+        ], 200);
     }
 
     /**
@@ -31,5 +48,29 @@ class TagController extends Controller
         $tag->load('articles');
 
         return view('tags.show')->with('tag', $tag);
+    }
+
+    /**
+     * Store tag. 
+     *
+     * @return Response
+     */
+    public function store(Request $request)
+    {   
+        $tag = Tag::where('name', $request->name)->first();
+        if($tag){ 
+            return back()->with([
+                'flash_message' => $request->name . ' has been added to tags list',
+                'flash_message_important' => true
+            ])
+        }
+
+        Tag::create($request->all());
+
+        return back()->with([
+            'flash_message' => $request->name . ' has been added to tags list',
+            'flash_message_important' => true
+        ]);
+
     }
 }
