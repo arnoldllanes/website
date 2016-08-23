@@ -24,7 +24,11 @@
 
     <main id="main">
         <div class="container">
+
             <div class="col-md-8 col-md-offset-2 animate-box">
+            @if(!Auth::guest())
+                <p>Edit article</p>
+            @endif
                 <h2>History</h2>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet
                     nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula
