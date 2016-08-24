@@ -17,8 +17,8 @@
         <div class="container">
             <div class="row" style="height: 239">
                 <div class="col-md-6">
-                    <a target="__Blank" href="http://www.meetup.com/San-Diego-Laravel-Meetup/"><h2
-                                class="text-center animate-box"><img src="images/meetupicon.png">Join our meet up!</h2>
+                    <a target="__Blank" href="http://www.meetup.com/San-Diego-Laravel-Meetup/">
+                        <h2 class="text-center animate-box"><img src="images/meetupicon.png">Join our meet up!</h2>
                     </a>
                     <div class="fh5co-grid animate-box" style="background-image: url(images/meetup.jpeg);">
                         <meetup></meetup>
@@ -55,9 +55,14 @@
                     </div>
                 </div>
                 <!-- Start Twitter feed-->
-                <div>
-                    <a class="twitter-timeline" href="https://twitter.com/sandiegolaravel">Tweets by TwitterDev</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                <div class="col-md-12">
+                     <h2 class="text-center animate-box"><strong>Tweets</strong> <small>by</small> <a href="http://www.twitter.com/sandiegolaravel">@sandiegolaravel</a></h2>
+                     <hr>
+                    @include('tweets.list')    
                 </div>
+
+               
                 <!-- End Twitter feed-->
                 <div class="col-md-12">
                     <h2 class="text-center animate-box">Our Sponsors</h2>

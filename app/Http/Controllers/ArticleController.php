@@ -80,11 +80,10 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        $tags = Tag::lists('name', 'id');
+        $tags = Tag::all('name', 'id');
 
         return view('articles.edit')->with('article', $article)->with('tags', $tags);
     }
-
 
     /**
      * Update the article.
@@ -93,8 +92,38 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, Article $article)
     {
+        $presenter = Presenter::where('name', $request->presenter)->first();
 
-        $article->update($request->all());
+         if ($presenter) {
+            $presenter->email   = $request->presenter_email;
+            $presenter->website = $request->presenter_website;
+
+            $article->presenter->update([
+                'email'   => $request->presenter_email,
+                'website' => $request->presnter_website
+            ]);
+        }
+
+        if (!$presenter) {
+            $presenter = new Presenter([
+                'name'    => $request->presenter,
+                'email'   => $request->presenter_email,
+                'website' => $request->presenter_website
+            ]);
+           
+            $presenter->save();
+
+            $article->presenter->update([
+                'name'    => $presenter->name,
+                'email'   => $presenter->email,
+                'website' => $presenter->website
+            ]);
+        }
+
+        $article->update([
+            'title' => $request->title,
+            'body'  => $request->body,
+        ]);
 
         $this->syncTags($article, $request->input('tag_list'));
 
@@ -102,7 +131,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Sync the list of teags in the database
+     * Sync the list of tags in the database
      *
      * @return Reponse
      */

@@ -27,7 +27,7 @@
 
             <div class="col-md-8 col-md-offset-2 animate-box">
             @if(!Auth::guest())
-                <p>Edit article</p>
+                <a href="/articles/{{ $article->id }}/edit"><p>Edit article <i class="fa fa-pencil-square-o" aria-hidden="true"></i></p></a>
             @endif
                 <h2>History</h2>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet

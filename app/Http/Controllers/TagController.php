@@ -62,7 +62,7 @@ class TagController extends Controller
             return back()->with([
                 'flash_message' => $request->name . ' has been added to tags list',
                 'flash_message_important' => true
-            ])
+            ]);
         }
 
         Tag::create($request->all());
