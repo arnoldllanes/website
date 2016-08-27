@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Twitter;
 use App\Article;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -38,6 +39,8 @@ class HomeController extends Controller
     {
         $latestArticle = Article::published()->latest()->first();
 
-        return view('pages.home')->with('latest_article', $latestArticle);
+        $tweets = Twitter::getUserTimeline(['screen_name' => 'arnoldnllanes', 'count' => 3, 'format' => 'object']);
+
+        return view('pages.home')->with('latest_article', $latestArticle)->with('tweets', $tweets);
     }
 }
