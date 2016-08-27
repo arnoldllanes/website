@@ -24,7 +24,7 @@
                         <li><a target="__Blank" href="https://trello.com/b/H7RSRe8m/public-laravel-sdug-board">Trello
                                 Board</a></li>
                         <li><a target="__Blank" href="http://www.sdphp.org/">SDPHP</a></li>
-                        <li><a href="contact.html">Resources</a></li>
+                        <li><a href="/resources">Resources</a></li>
                         @if(!Auth::guest())
                             <li><a href="/home">>To Dashboard<</a></li>
                         @endif
