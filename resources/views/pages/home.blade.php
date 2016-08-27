@@ -27,7 +27,7 @@
 
                 <div class="col-md-6">
                     <h2 class="text-center animate-box">Latest Blog Post</h2>
-                    <div class="fh5co-grid animate-box" style="background-image: url(images/work-2.jpg);">
+                    <div class="fh5co-grid animate-box" style="background-image: url(images/blogpic.png);">
                         <div class="image-popup text-center">
                             <div class="post animate-box">
                                 <img src="images/blogicon.png" alt="Product">
