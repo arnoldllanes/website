@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+  use \App\Http\Traits\TwitterTrait;
     /**
      * Create a new controller instance.
      *
@@ -39,8 +40,6 @@ class HomeController extends Controller
     {
         $latestArticle = Article::published()->latest()->first();
 
-        $tweets = Twitter::getUserTimeline(['screen_name' => config('sdlug.twitterHandle'), 'count' => 3, 'format' => 'object']);
-
-        return view('pages.home')->with('latest_article', $latestArticle)->with('tweets', $tweets);
+        return view('pages.home')->with('latest_article', $latestArticle)->with('tweets', $this->getTweets());
     }
 }

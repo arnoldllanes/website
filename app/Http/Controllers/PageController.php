@@ -8,12 +8,15 @@ use App\Http\Requests;
 
 class PageController extends Controller
 {
+    use \App\Http\Traits\TwitterTrait;
 	/**
 	 * Returns the about static page.
 	 */
     public function about()
     {
-    	return view('pages.about');
+      $ericTweet = $this->getTweets('shocm', 1);
+      // dd($ericTweet);
+    	return view('pages.about', ['ericTweets' => $ericTweet]);
     }
 
     /**
