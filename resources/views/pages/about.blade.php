@@ -33,6 +33,25 @@
 		<p>Has lived in San Diego for over 20 years and became a Co-Organizer of San Diego PHP Group in 2012. Somewhat of a scripting language and framework junkie. Ruby, Rails, Python, Django, Go, and even BASH but with a main strength are around PHP and the CakePHP framework. Also enjoy playing around with Zend Framework, CodeIgniter, Symfony, F3, and FuelPHP.</p>
 
 		<p>A husband and father x2 with an abiding love of Scotch and Baseball.</p>
+        <div class="col-md-12">
+            <h3 class="text-center animate-box"><strong>Latest Tweet</strong> <small>by</small> <a href="http://www.twitter.com/shocm">@shocm</a></h3>
+            <hr>
+            @foreach($ericTweets as $tweet)
+                <div class="animate-box">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="img-thumbnail media-object" src="{{ $tweet->user->profile_image_url }}" alt="Avatar">
+                        </div>
+                        <div class="media-body">
+                            <a href="http://www.twitter.com/{{ $tweet->user->screen_name }}"><h4 class="media-heading">{{ $tweet->user->name }}</a>
+                              <a href="https://twitter.com/{{ $tweet->user->screen_name }}/status/{{ $tweet->id}}">{{ Carbon\Carbon::parse($tweet->created_at)->diffForHumans() }}</a></h4>
+                            <p>{{ $tweet->text }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
 		<div class="col-xs-12 col-sm-4 col-md-12">
 	        <div class="nav navbar-nav">
 	            <a class="btn btn-social-icon btn-github" target="__Blank" href="https://github.com/ericvanjohnson"><i class="fa fa-github" aria-hidden="true"></i></a>
