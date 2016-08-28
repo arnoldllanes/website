@@ -57,12 +57,12 @@
                 <!-- Start Twitter feed-->
 
                 <div class="col-md-12">
-                     <h2 class="text-center animate-box"><strong>Tweets</strong> <small>by</small> <a href="http://www.twitter.com/sandiegolaravel">@sandiegolaravel</a></h2>
+                     <h2 class="text-center animate-box"><strong>Tweets</strong> <small>by</small> <a href="http://www.twitter.com/{{ config('sdlug.twitterHandle') }}">{{ '@'.config('sdlug.twitterHandle') }}</a></h2>
                      <hr>
-                    @include('tweets.list')    
+                    @include('tweets.list')
                 </div>
 
-               
+
                 <!-- End Twitter feed-->
                 <div class="col-md-12">
                     <h2 class="text-center animate-box">Our Sponsors</h2>
@@ -114,4 +114,3 @@
     </section>
 
 @endsection
-
