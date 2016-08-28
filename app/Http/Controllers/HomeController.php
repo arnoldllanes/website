@@ -39,7 +39,7 @@ class HomeController extends Controller
     {
         $latestArticle = Article::published()->latest()->first();
 
-        $tweets = Twitter::getUserTimeline(['screen_name' => 'arnoldnllanes', 'count' => 3, 'format' => 'object']);
+        $tweets = Twitter::getUserTimeline(['screen_name' => config('sdlug.twitterHandle'), 'count' => 3, 'format' => 'object']);
 
         return view('pages.home')->with('latest_article', $latestArticle)->with('tweets', $tweets);
     }
