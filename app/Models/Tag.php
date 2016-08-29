@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,12 +14,12 @@ class Tag extends Model
     ];
 
     /**
-     * Tags can be associated with many articles.
+     * Tags can be associated with many presentations.
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function articles()
+    public function presentations()
     {
-        return $this->belongsToMany('App\Article');
+        return $this->belongsToMany('App\Models\Presentation');
     }
 }

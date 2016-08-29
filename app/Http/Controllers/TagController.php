@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
+use App\Models\Tag;
 use Response;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -45,7 +45,7 @@ class TagController extends Controller
     public function show($id)
     {
         $tag = Tag::where('id', $id)->firstOrfail();
-        $tag->load('articles');
+        $tag->load('presentations');
 
         return view('tags.show')->with('tag', $tag);
     }

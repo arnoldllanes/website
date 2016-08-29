@@ -13,7 +13,7 @@ use Carbon\Carbon;
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
@@ -22,7 +22,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Article::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Article::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->sentence(5),
         'body' => $faker->paragraph(4),
@@ -33,7 +33,7 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Tag::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->sentence(1),
         'created_at' => Carbon::now(),
@@ -41,7 +41,7 @@ $factory->define(App\Tag::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Presenter::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Presenter::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,

@@ -8,7 +8,7 @@
                     <div class="panel-heading">Dashboard</div>
 
                     <div class="panel-body">
-                        <h2><a href="/articles/create">Post a Presentation</a></h2>
+                        <h2><a href="/presentations/create">Post a Presentation</a></h2>
                     </div>
                 </div>
             </div>

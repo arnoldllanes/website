@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Presenter;
+use App\Models\Presenter;
 
 class PresenterController extends Controller
 {

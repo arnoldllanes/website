@@ -15,7 +15,7 @@
         </label>
     </div>
     <div class="form-group">
-        <label for="published_at">Publish article on: </label>
+        <label for="published_at">Publish presentation on: </label>
         <input class="form-control" type="date" name="published_at" id="published_at">
     </div>
     <div class="form-group">
@@ -35,5 +35,5 @@
         <textarea name="body" id="body" class="form-control" rows=15></textarea>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-default">Submit Article</button>
+        <button type="submit" class="btn btn-default">Submit presentation</button>
     </div>
