@@ -23,11 +23,11 @@
 </div>
 
 <div class="media animate-box">
-    <a class="pull-left" href="">
-        <img class="media-object" alt="" src="images/eric.png">
-    </a>
+    <div class="pull-left">
+        <img class="media-object" alt="Photo of Eric Van Johnson" src="images/eric.png">
+    </div>
     <div class="media-body">
-        <h2 class="media-heading"><a href="">Eric Van Johnson</a></h2>
+        <h2 class="media-heading">Eric Van Johnson</h2>
         <p>Open Source Enthusiast, Advocate, and general FOSS Maniac who enjoys web architecture, technology, and solutions. A hacker and developer who fell down the slippery slope of a “Systems Architect” job. Over 15 years of professional experience in the IT industry, including as Systems Architect for an industry-leading Fortune 100 company. Big on Cloud Strategies and Solutions (IaaS, PaaS, and SaaS).</p>
 
 		<p>Has lived in San Diego for over 20 years and became a Co-Organizer of San Diego PHP Group in 2012. Somewhat of a scripting language and framework junkie. Ruby, Rails, Python, Django, Go, and even BASH but with a main strength are around PHP and the CakePHP framework. Also enjoy playing around with Zend Framework, CodeIgniter, Symfony, F3, and FuelPHP.</p>
@@ -67,11 +67,11 @@
 <hr class="animate-box">
 
 <div class="media animate-box">
-    <a class="pull-left" href="">
-        <img class="media-object" alt="" src="images/john.png">
-    </a>
+    <div class="pull-left">
+        <img class="media-object" alt="Photo of John Congdon" src="images/john.png">
+    </div>
     <div class="media-body">
-        <h2 class="media-heading"><a href="">John Congdon</a></h2>
+        <h2 class="media-heading">John Congdon</h2>
         <p>I am a mostly self taught programmer with a BS in Aviation Computer Science from Embry-Riddle Aeronautical University.  I started coding at 10 years old in BASIC, and I grew from there. PASCAL was my language of choice before college, then PERL until 2003, and mainly PHP after that. While PHP is my main weapon of choice, any language can and will be yielded when necessary. </p>
 
 		<p>PHP UserGroups and conferences have had a very important role in my development.  I looked for a PHP Group when I learned I was moving, but there was not one running any longer. So I listened to the great Cal Evans, “if you look around for a user group, and there isn’t one, then you’re the new organizer”. And so I started it up after moving from Daytona Beach, FL to San Diego, CA.</p>
@@ -90,11 +90,11 @@
 <hr class="animate-box">
 
 <div class="media animate-box">
-    <a class="pull-left" href="">
+    <div class="pull-left">
         <img class="media-object" alt="" src="images/avatar.png">
-    </a>
+    </div>
     <div class="media-body">
-        <h2 class="media-heading"><a href="">Thomas Rideout</a></h2>
+        <h2 class="media-heading">Thomas Rideout</h2>
         <p></p>
 		<div class="col-xs-12 col-sm-4 col-md-12">
 	        <div class="nav navbar-nav">
