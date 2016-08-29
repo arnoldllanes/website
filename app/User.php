@@ -28,12 +28,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * A user can be associated with many articles
+     * A user can be associated with many presentations
      *
      * ^ @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function articles()
+    public function presentations()
     {
-        return $this->hasMany('App\Article', 'user_id');
+        return $this->hasMany('App\Models\Presentation', 'user_id');
     }
 }

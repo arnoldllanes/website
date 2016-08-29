@@ -65,50 +65,30 @@
 
                 <!-- End Twitter feed-->
                 <div class="col-md-12">
-                    <h2 class="text-center animate-box">Our Sponsors</h2>
+                  <h2 class="text-center animate-box">Our Sponsors</h2>
+                  <div class="col-md-6">
                     <div class="fh5co-grid animate-box"
-                         style="background-image: url(images/diegodev.png); height:239px">
-                        <a class="image-popup text-center" target="__Blank" href="https://www.diegodev.com/">
-                            <div class="work-title">
-                                <h3>DiegoDev Group, LLC</h3>
-                                <span>A passionate development group dedicated to building secure, standards compliant, and maintainable solutions for our customers. From code to operations.</span>
-                            </div>
-                        </a>
-                    </div>
+                    style="background-image: url(images/diegodev.png); height:239px">
+                    <a class="image-popup text-center" target="__Blank" href="https://www.diegodev.com/">
+                      <div class="work-title">
+                        <h3>DiegoDev Group, LLC</h3>
+                        <span>A passionate development group dedicated to building secure, standards compliant, and maintainable solutions for our customers. From code to operations.</span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="fh5co-grid animate-box"
-                         style="background-image: url(images/carinet.png); height: 239px">
-                        <a class="image-popup text-center" target="__Blank" href="https://www.cari.net/">
-                            <div class="work-title">
-                                <h3>CARI.net</h3>
-                                <span>San Diego-based CARI.net owns and operates multiple data centers with critical system infrastructure that assures customers of continual uptime.</span>
-                            </div>
-                        </a>
+                <div class="col-md-6">
+                  <div class="fh5co-grid animate-box"
+                  style="background-image: url(images/carinet.png); height: 239px">
+                  <a class="image-popup text-center" target="__Blank" href="https://www.cari.net/">
+                    <div class="work-title">
+                      <h3>CARI.net</h3>
+                      <span>San Diego-based CARI.net owns and operates multiple data centers with critical system infrastructure that assures customers of continual uptime.</span>
                     </div>
+                  </a>
                 </div>
-                <!-- <div class="col-md-4">
-                    <div class="fh5co-grid animate-box" style="background-image: url(images/work-4.jpg);">
-                        <a class="image-popup text-center" href="#">
-                            <div class="work-title">
-                                <h3>Don’t Just Stand There</h3>
-                                <span>Illustration, Print</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="fh5co-grid animate-box" style="background-image: url(images/work-3.jpg);">
-                        <a class="image-popup text-center" href="#">
-                            <div class="work-title">
-                                <h3>Ampersand</h3>
-                                <span>Illustration, Print</span>
-                            </div>
-                        </a>
-                    </div>
-                </div> -->
-
+              </div>
+            </div>
             </div>
             <div>
     </section>

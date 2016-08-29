@@ -1,17 +1,17 @@
     <div class="form-group">
         <label for="title">Title:</label>
-        <input class="form-control" type="text" name="title" id="title" value="{{ $article->title }}" required>
+        <input class="form-control" type="text" name="title" id="title" value="{{ $presentation->title }}" required>
     </div>
     <div class="form-group">
         <label for="presenter">Presenter:</label>
-        <input type="text" class="form-control" name="presenter" id="presenter" value="{{ $article->presenter->name }}" required>
+        <input type="text" class="form-control" name="presenter" id="presenter" value="{{ $presentation->presenter->name }}" required>
     </div>
     <div class="form-group">
         <label for="presenter_email">Presenter's email:
-            <input type="email" class="form-control" name="presenter_email" id="presenter_email" value="{{ $article->presenter->email }}">
+            <input type="email" class="form-control" name="presenter_email" id="presenter_email" value="{{ $presentation->presenter->email }}">
         </label>
         <label for="presenter_website">Presenter's website:
-            <input type="text" class="form-control" name="presenter_website" id="presenter_website" value="{{ $article->presenter->website }}">
+            <input type="text" class="form-control" name="presenter_website" id="presenter_website" value="{{ $presentation->presenter->website }}">
         </label>
     </div>
     <div class="form-group">
@@ -28,8 +28,8 @@
             
     <div class="form-group">
         <label for="body">Content: </label>
-        <textarea name="body" id="body" class="form-control" rows=15>{{ $article->body }}</textarea>
+        <textarea name="body" id="body" class="form-control" rows=15>{{ $presentation->body }}</textarea>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-default">Edit Article</button>
+        <button type="submit" class="btn btn-default">Edit presentation</button>
     </div>

@@ -5,14 +5,14 @@
             <div class="row" style="padding-top:50px">
                 <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
                     <div class="intro animate-box">
-                        <h1>{{ $article->title }}</h1>
+                        <h1>{{ $presentation->title }}</h1>
                         <h2>Presented By: <a
-                                    href="/presenters/{{ $article->presenter->id }}">{{ $article->presenter->name }}</a>
+                                    href="/presenters/{{ $presentation->presenter->id }}">{{ $presentation->presenter->name }}</a>
                         </h2>
                     </div>
                     <p class="animate-box" style="display:inline-block">
                         Tags:
-                    @foreach($article->tags as $tag)
+                    @foreach($presentation->tags as $tag)
                         <li class="animate-box" style="display: inline-block"><a
                                     href="/tags/{{ $tag->id }}">{{ $tag->name }}</a></li>
                         @endforeach
@@ -27,7 +27,7 @@
 
             <div class="col-md-8 col-md-offset-2 animate-box">
             @if(!Auth::guest())
-                <a href="/articles/{{ $article->id }}/edit"><p>Edit article <i class="fa fa-pencil-square-o" aria-hidden="true"></i></p></a>
+                <a href="/presentations/{{ $presentation->id }}/edit"><p>Edit presentation <i class="fa fa-pencil-square-o" aria-hidden="true"></i></p></a>
             @endif
                 <h2>History</h2>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet
@@ -60,7 +60,7 @@
                     laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc.
                     Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur
                     gravida.</p>
-                <p>Published By: {{ $article->publisher->name }}</p>
+                <p>Published By: {{ $presentation->publisher->name }}</p>
             </div>
             <!-- <div class="col-md-4"></div> -->
         </div>

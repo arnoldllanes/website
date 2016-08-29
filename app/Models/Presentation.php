@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Presentation extends Model
 {
     /**
      *  Attributes that are mass assignable.
@@ -20,7 +20,7 @@ class Article extends Model
     protected $dates = ['published_at'];
 
     /**
-     * Scope to modify query instance to return articles that have been published according to date.
+     * Scope to modify query instance to return presentations that have been published according to date.
      * Article::published($value);
      *
      * @return $query
@@ -32,7 +32,7 @@ class Article extends Model
     }
 
     /**
-     * Scope to modify query isntance to return articles that have NOT been published according to date
+     * Scope to modify query isntance to return presentations that have NOT been published according to date
      */
     public function scopeUnpublished($query)
     {
@@ -58,7 +58,7 @@ class Article extends Model
     }
 
     /**
-     * Publisher of the article.
+     * Publisher of the presentation.
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -68,27 +68,27 @@ class Article extends Model
     }
 
     /**
-     *  Author of article
+     *  Author of presentation
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function presenter()
     {
-        return $this->belongsTo('App\Presenter', 'presenter_id');
+        return $this->belongsTo('App\Models\Presenter', 'presenter_id');
     }
 
     /**
-     * An article can have many tags.
+     * An presentation can have many tags.
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongstoMany
      */
     public function tags()
     {
-        return $this->belongsToMany('App\Tag')->withTimestamps();
+        return $this->belongsToMany('App\Models\Tag')->withTimestamps();
     }
 
     /**
-     * Fetches a list of all tags associated with this article.
+     * Fetches a list of all tags associated with this presentation.
      *
      * @return tags
      */

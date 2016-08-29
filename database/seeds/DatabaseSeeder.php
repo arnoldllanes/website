@@ -54,7 +54,7 @@ class PresentersTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(App\Presenter::class, 6)->create()->each(function ($presenter) {
+        factory(App\Models\Presenter::class, 6)->create()->each(function ($presenter) {
             $presenter->myArticles()->save(factory(App\Article::class)->make())->each(function ($article) {
                 $article->tags()->save(factory(App\Tag::class)->make());
             });

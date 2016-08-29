@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,13 +11,13 @@ class Presenter extends Model
     /**
      * Presenter is associated to author many articles.
      */
-    public function myArticles()
+    public function myPresentations()
     {
-        return $this->hasMany('App\Article', 'presenter_id');
+        return $this->hasMany('App\Models\Presentation', 'presenter_id');
     }
 
     public function articleCount()
     {
-        return $this->myArticles()->count();
+        return $this->myPresentations()->count();
     }
 }

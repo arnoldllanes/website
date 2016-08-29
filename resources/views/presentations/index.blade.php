@@ -15,25 +15,25 @@
                 </div>
             </div>
             <div class="row">
-                @foreach($articles as $article)
+                @foreach($presentations as $presentation)
                     <div class="post-entry">
                         <div class="col-md-6">
                             <div class="post animate-box">
-                                <a href="/articles/{{ $article->id }}"><img src="images/blogicon.png" alt="Product"></a>
+                                <a href="/presentations/{{ $presentation->id }}"><img src="images/blogicon.png" alt="Product"></a>
                                 <div>
-                                    <h3><a href="/articles/{{ $article->id }}">{{ $article->title }}</a></h3>
-                                <!-- <p>{{ str_limit($article->body, $limit = 25, $end = '...') }}</p> -->
+                                    <h3><a href="/presentations/{{ $presentation->id }}">{{ $presentation->title }}</a></h3>
+                                <!-- <p>{{ str_limit($presentation->body, $limit = 25, $end = '...') }}</p> -->
                                     <p>Presented by: 
-                                        <a href="/presenter/{{ $article->presenter->id }}">{{ $article->presenter->name }}</a>
+                                        <a href="/presenter/{{ $presentation->presenter->id }}">{{ $presentation->presenter->name }}</a>
                                     </p>
-                                    <p>Published on: {{ $article->published_at }}</p>
+                                    <p>Published on: {{ $presentation->published_at }}</p>
                                     <p>Tags:
-                                        @foreach($article->tags->slice(0, 2) as $tag)
+                                        @foreach($presentation->tags->slice(0, 2) as $tag)
                                             {{ $tag->name }}
                                         @endforeach
                                         ...
                                     </p>
-                                    <span><a href="/articles/{{ $article->id }}">Read Article...</a></span>
+                                    <span><a href="/presentations/{{ $presentation->id }}">Read presentation...</a></span>
                                 </div>
                             </div>
                         </div>

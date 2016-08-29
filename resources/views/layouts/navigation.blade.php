@@ -20,7 +20,7 @@
                     <ul class="nav text-center">
                         <li><a href="/"><span>Home</span></a></li>
                         <li><a href="/about">About Us</a></li>
-                        <li><a href="/articles">Blog</a></li>
+                        <li><a href="/presentations">Presentations</a></li>
                         <li><a target="__Blank" href="https://trello.com/b/H7RSRe8m/public-laravel-sdug-board">Trello
                                 Board</a></li>
                         <li><a target="__Blank" href="http://www.sdphp.org/">SDPHP</a></li>
