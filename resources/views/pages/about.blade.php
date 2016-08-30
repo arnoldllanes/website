@@ -28,11 +28,10 @@
     </div>
     <div class="media-body">
         <h2 class="media-heading">Eric Van Johnson</h2>
-        <p>Open Source Enthusiast, Advocate, and general FOSS Maniac who enjoys web architecture, technology, and solutions. A hacker and developer who fell down the slippery slope of a “Systems Architect” job. Over 15 years of professional experience in the IT industry, including as Systems Architect for an industry-leading Fortune 100 company. Big on Cloud Strategies and Solutions (IaaS, PaaS, and SaaS).</p>
-
-		<p>Has lived in San Diego for over 20 years and became a Co-Organizer of San Diego PHP Group in 2012. Somewhat of a scripting language and framework junkie. Ruby, Rails, Python, Django, Go, and even BASH but with a main strength are around PHP and the CakePHP framework. Also enjoy playing around with Zend Framework, CodeIgniter, Symfony, F3, and FuelPHP.</p>
-
-		<p>A husband and father x2 with an abiding love of Scotch and Baseball.</p>
+        <p>Open Source Enthusiast, Advocate, and general FOSS Maniac who enjoys web architecture, technology, and solutions.
+        One of the organziors of the <a href="https://www.sdphp.org">San Diego PHP User Group</a> and <a href="https://www.sdlug.com">San Diego Laravel User Group</a>
+        Currently making a living running a small development firm called the <a href="https://wwww.diegodev.com">DiegoDev Group</a> and coding PHP and Laravel projects with his friends</p>
+        <p>A husband and father x2 with an abiding love of Scotch and Baseball.</p>
         <div class="col-md-12">
             <h3 class="text-center animate-box"><strong>Latest Tweet</strong> <small>by</small> <a href="http://www.twitter.com/shocm">@shocm</a></h3>
             <hr>
@@ -68,6 +67,26 @@
 
 <div class="media animate-box">
     <div class="pull-left">
+        <img class="media-object" alt="" src="images/thomas.jpeg">
+    </div>
+    <div class="media-body">
+        <h2 class="media-heading">Thomas Rideout</h2>
+        <p>A man of few words and fewer thoughts.</p>
+		<div class="col-xs-12 col-sm-4 col-md-12">
+	        <div class="nav navbar-nav">
+	            <a class="btn btn-social-icon btn-github" target="__Blank" href="https://github.com/trideout"><i class="fa fa-github" aria-hidden="true"></i></a>
+	            <a class="btn btn-social-icon btn-linkedin" target="__Blank" href="https://www.linkedin.com/in/therideout"><i class="fa fa-linkedin"></i></a>
+	            <a class="btn btn-social-icon btn-twitter" target="__Blank" href="https://twitter.com/realrideout"><i class="fa fa-twitter"></i></a>
+	            <a class="btn btn-social-icon" target="__Blank" href="mailto:thomas@sdphp.org"><i class="fa fa-envelope-o"></i></a>
+	        </div>
+	    </div>
+    </div>
+</div>
+
+<hr class="animate-box">
+
+<div class="media animate-box">
+    <div class="pull-left">
         <img class="media-object" alt="Photo of John Congdon" src="images/john.png">
     </div>
     <div class="media-body">
@@ -82,23 +101,6 @@
 	            <a class="btn btn-social-icon" target="__Blank" href="http://www.johncongdon.com/"><i class="fa fa-user" aria-hidden="true"></i></a>
 	            <a class="btn btn-social-icon btn-twitter" target="__Blank" href="https://twitter.com/johncongdon"><i class="fa fa-twitter"></i></a>
 	            <a class="btn btn-social-icon" target="__Blank" href="mailto:john@sdphp.org"><i class="fa fa-envelope-o"></i></a>
-	        </div>
-	    </div>
-    </div>
-</div>
-
-<hr class="animate-box">
-
-<div class="media animate-box">
-    <div class="pull-left">
-        <img class="media-object" alt="" src="images/avatar.png">
-    </div>
-    <div class="media-body">
-        <h2 class="media-heading">Thomas Rideout</h2>
-        <p></p>
-		<div class="col-xs-12 col-sm-4 col-md-12">
-	        <div class="nav navbar-nav">
-	            <a class="btn btn-social-icon btn-linkedin" target="__Blank" href="https://www.linkedin.com/in/therideout"><i class="fa fa-linkedin"></i></a>
 	        </div>
 	    </div>
     </div>
