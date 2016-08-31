@@ -15,6 +15,8 @@ class Presentation extends Model
         'body',
         'presenter_id',
         'published_at',
+        'edited_by',
+        'edited_date'
     ];
 
     protected $dates = ['published_at'];

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Presenter extends Model
 {
-    protected $fillable = ['name', 'email'];
+    protected $fillable = ['name', 'email', 'website'];
 
     /**
      * Presenter is associated to author many articles.

@@ -26,7 +26,7 @@
                                     <p>Presented by: 
                                         <a href="/presenter/{{ $presentation->presenter->id }}">{{ $presentation->presenter->name }}</a>
                                     </p>
-                                    <p>Published on: {{ $presentation->published_at }}</p>
+                                    <p>Published on: {{ Carbon\Carbon::parse($presentation->created_at)->diffForHumans() }}</p>
                                     <p>Tags:
                                         @foreach($presentation->tags->slice(0, 2) as $tag)
                                             {{ $tag->name }}

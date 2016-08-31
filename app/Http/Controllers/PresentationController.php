@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Carbon\Carbon;
 use App\Models\Tag;
-use App\Models\Presentation;
 use App\Models\Presenter;
+use App\Models\Presentation;
 use App\Http\Requests\PresentationRequest;
 
 class PresentationController extends Controller
@@ -81,8 +82,21 @@ class PresentationController extends Controller
     public function edit(Presentation $presentation)
     {
         $tags = Tag::all('name', 'id');
+        $hasTags = [];
 
-        return view('presentations.edit')->with('presentation', $presentation)->with('tags', $tags);
+        foreach($presentation->tags as $tag ){
+            $hasTags[] = $tag->id;
+        };
+        
+        return view('presentations.edit')->with('presentation', $presentation)->with('tags', $tags)->with('hasTags', $hasTags);
+    }
+
+    public function destroy(Presentation $presentation)
+    {
+        dd($presentation);
+        $presentation->delete();
+
+        return redirect('presentations');
     }
 
     /**
@@ -100,7 +114,7 @@ class PresentationController extends Controller
 
             $presentation->presenter->update([
                 'email'   => $request->presenter_email,
-                'website' => $request->presnter_website
+                'website' => $request->presenter_website
             ]);
         }
 
@@ -123,11 +137,13 @@ class PresentationController extends Controller
         $presentation->update([
             'title' => $request->title,
             'body'  => $request->body,
+            'edited_by' => Auth::user()->name,
+            'edited_date' => Carbon::now()
         ]);
 
         $this->syncTags($presentation, $request->input('tag_list'));
 
-        return redirect('presentations');
+        return redirect()->route('presentations.show', $presentation->id);
     }
 
     /**
