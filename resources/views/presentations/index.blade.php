@@ -24,7 +24,7 @@
                                     <h3><a href="/presentations/{{ $presentation->id }}">{{ $presentation->title }}</a></h3>
                                 <!-- <p>{{ str_limit($presentation->body, $limit = 25, $end = '...') }}</p> -->
                                     <p>Presented by: 
-                                        <a href="/presenter/{{ $presentation->presenter->id }}">{{ $presentation->presenter->name }}</a>
+                                        <a href="/presenters/{{ $presentation->presenter->id }}">{{ $presentation->presenter->name }}</a>
                                     </p>
                                     <p>Published on: {{ Carbon\Carbon::parse($presentation->created_at)->diffForHumans() }}</p>
                                     <p>Tags:
