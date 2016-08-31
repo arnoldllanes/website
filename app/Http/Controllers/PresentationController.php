@@ -93,10 +93,12 @@ class PresentationController extends Controller
 
     public function destroy(Presentation $presentation)
     {
-        dd($presentation);
         $presentation->delete();
 
-        return redirect('presentations');
+        return redirect('presentations')->with([
+            'flash_message' => 'Presentation was deleted',
+            'flash_message_important' => true
+        ]);;
     }
 
     /**

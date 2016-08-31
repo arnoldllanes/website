@@ -36,10 +36,12 @@
             @if(!Auth::guest())
                 <a style="display:inline-block" href="/presentations/{{ $presentation->id }}/edit"><p> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit presentation</p></a>
 
-                <form action="" method="POST">
+                <form action="{{ action('PresentationController@destroy', ['presentation' => $presentation->id]) }}" method="POST">
                     {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
                     <button type="submit" class="btn btn-default">Delete Presentation</button>
                 </form>
+
             @endif
                 <h2 class="text-center">{{ $presentation->title }}</h2>
                 <hr>
