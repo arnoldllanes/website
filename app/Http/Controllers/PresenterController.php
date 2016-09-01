@@ -28,7 +28,7 @@ class PresenterController extends Controller
     public function show($id)
     {
         $presenter = Presenter::where('id', $id)->firstOrfail();
-        $presenter->load('myArticles');
+        $presenter->load('myPresentations');
 
         return view('presenters.show')->with('presenter', $presenter);
     }

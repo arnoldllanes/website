@@ -9,32 +9,35 @@
                         <h2>
                             <div class="row">
                                 <div class="col-md-6 col-md-offset-3 subtext">
-                                    <p>List of all articles associated with the tag "{{ $tag->name }}". Enjoy!</p>
+                                    <p>List of all presentations associated with the tag <strong>"{{ $tag->name }}"</strong>. Enjoy!</p>
                                 </div>
                             </div>
                 </div>
             </div>
             <div class="row">
-                @foreach($tag->articles as $article)
+                @foreach($tag->presentations as $presentation)
                     <div class="post-entry">
                         <div class="col-md-6">
                             <div class="post animate-box">
-                                <a href="/articles/{{ $article->id }}"><img src="/images/blogicon.png"
-                                                                            alt="Product"></a>
-                                <div>
+                                <a href="/presentations/{{ $presentation->id }}"><img src="/images/blogicon.png" alt="Product"></a>
+                            <div>
                                     <h3>
-                                        <a href="/articles/{{ $article->id }}">{{ str_limit($article->title, $limit = 25, $end = '...') }}</a>
+                                        <a href="/presentations/{{ $presentation->id }}">{{ str_limit($presentation->title, $limit = 25, $end = '...') }}</a>
                                     </h3>
-                                    <p>{{ str_limit($article->body, $limit = 25, $end = '...') }}</p>
-                                    <p>Presented by: {{ $article->publisher->name }}</p>
-                                    <p>Published on: {{ $article->published_at }}</p>
+                                    <p>{{ str_limit($presentation->body, $limit = 25, $end = '...') }}</p>
+                                    <p>Presented by: 
+                                        <a href="/presenters/{{ $presentation->presenter->id }}">{{ $presentation->presenter->name }}</a>
+                                    </p>
+                                    <p>Published on: {{ Carbon\Carbon::parse($presentation->created_at)->diffForHumans() }}</p>
+                                    @if($presentation->tags)
                                     <p>Tags:
-                                        @foreach($article->tags->slice(0, 2) as $tag)
+                                        @foreach($presentation->tags->slice(0, 2) as $tag)
                                             {{ $tag->name }}
                                         @endforeach
                                         ...
                                     </p>
-                                    <span><a href="/articles/{{ $article->id }}">Read Article...</a></span>
+                                    @endif
+                                    <span><a href="/presentations/{{ $presentation->id }}">Read Article...</a></span>
                                 </div>
                             </div>
                         </div>

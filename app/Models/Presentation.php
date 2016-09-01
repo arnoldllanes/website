@@ -15,6 +15,9 @@ class Presentation extends Model
         'body',
         'presenter_id',
         'published_at',
+        'edited_by',
+        'edited_date',
+        'video_embed'
     ];
 
     protected $dates = ['published_at'];

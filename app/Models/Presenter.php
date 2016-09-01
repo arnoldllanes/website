@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Presenter extends Model
 {
-    protected $fillable = ['name', 'email'];
+    protected $fillable = ['name', 'email', 'website'];
 
     /**
      * Presenter is associated to author many articles.
@@ -16,7 +16,7 @@ class Presenter extends Model
         return $this->hasMany('App\Models\Presentation', 'presenter_id');
     }
 
-    public function articleCount()
+    public function presentationCount()
     {
         return $this->myPresentations()->count();
     }

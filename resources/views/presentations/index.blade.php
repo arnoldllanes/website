@@ -5,11 +5,13 @@
         <div class="container">
             <div class="row animate-box">
                 <div class="col-md-12 section-heading text-center">
-                    <h2>Blog Archive</h2>
+                    <h2>Presentations</h2>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3 subtext">
                             <p>Check out the collection of blogs and/or presentations done at the San Diego Laravel Meet
                                 Up. Enjoy!</p>
+                                <p><a href="/tags">Tags List</a></p>
+                                <p><a href="/presenters">Presenters List</a></p>
                         </div>
                     </div>
                 </div>
@@ -24,9 +26,9 @@
                                     <h3><a href="/presentations/{{ $presentation->id }}">{{ $presentation->title }}</a></h3>
                                 <!-- <p>{{ str_limit($presentation->body, $limit = 25, $end = '...') }}</p> -->
                                     <p>Presented by: 
-                                        <a href="/presenter/{{ $presentation->presenter->id }}">{{ $presentation->presenter->name }}</a>
+                                        <a href="/presenters/{{ $presentation->presenter->id }}">{{ $presentation->presenter->name }}</a>
                                     </p>
-                                    <p>Published on: {{ $presentation->published_at }}</p>
+                                    <p>Published on: {{ Carbon\Carbon::parse($presentation->created_at)->diffForHumans() }}</p>
                                     <p>Tags:
                                         @foreach($presentation->tags->slice(0, 2) as $tag)
                                             {{ $tag->name }}
