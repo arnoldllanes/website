@@ -16,7 +16,7 @@ class Presenter extends Model
         return $this->hasMany('App\Models\Presentation', 'presenter_id');
     }
 
-    public function articleCount()
+    public function presentationCount()
     {
         return $this->myPresentations()->count();
     }

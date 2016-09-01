@@ -22,4 +22,9 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Models\Presentation');
     }
+
+    public function presentationCount()
+    {
+        return $this->presentations()->count();
+    }
 }

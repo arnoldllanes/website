@@ -5,11 +5,13 @@
         <div class="container">
             <div class="row animate-box">
                 <div class="col-md-12 section-heading text-center">
-                    <h2>Blog Archive</h2>
+                    <h2>Presentations</h2>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3 subtext">
                             <p>Check out the collection of blogs and/or presentations done at the San Diego Laravel Meet
                                 Up. Enjoy!</p>
+                                <p><a href="/tags">Tags List</a></p>
+                                <p><a href="/presenters">Presenters List</a></p>
                         </div>
                     </div>
                 </div>

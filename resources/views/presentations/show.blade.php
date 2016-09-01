@@ -46,6 +46,12 @@
                 <h2 class="text-center">{{ $presentation->title }}</h2>
                 <hr>
 
+            @if($presentation->video_embed)
+                <div class="text-center">
+                    {!! $presentation->video_embed !!}    
+                </div>
+            @endif
+
                 <p>{{ $presentation->body }}</p>
 
                 <hr>
@@ -57,7 +63,7 @@
                 @endif
 
                 @if($presentation->edited_date)
-                    <p>Edited Date: {{ $presentation->edited_date }}</p>
+                    <p>Edited: {{ Carbon\Carbon::parse($presentation->edited_date)->diffForHumans() }}</p>
                 @endif
             </div>
             <!-- <div class="col-md-4"></div> -->

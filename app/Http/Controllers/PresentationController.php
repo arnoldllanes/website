@@ -189,7 +189,8 @@ class PresentationController extends Controller
             'presenter_id' => $presenter->id,
             'published_at' => $request->published_at,
             'title' => $request->title,
-            'body' => $request->body
+            'body' => $request->body,
+            'video_embed' => $request->video_embed
         ]);
 
         $this->syncTags($presentation, $request->input('tag_list'));

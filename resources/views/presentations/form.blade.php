@@ -29,6 +29,11 @@
 
             <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#createTag">Create Tag</a>
     </div>
+    
+    <div class="form-group">
+        <label for="videos">Embed Youtube Video</label>
+        <input class="form-control" type="text" name="video_embed" id="video_embed">
+    </div>
             
     <div class="form-group">
         <label for="body">Content: </label>
