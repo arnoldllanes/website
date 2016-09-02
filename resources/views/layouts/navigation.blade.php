@@ -18,13 +18,22 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="nav text-center">
-                        <li><a href="/"><span>Home</span></a></li>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/presentations">Presentations</a></li>
-                        <li><a target="__Blank" href="https://trello.com/b/H7RSRe8m/public-laravel-sdug-board">Trello
-                                Board</a></li>
-                        <li><a target="__Blank" href="http://www.sdphp.org/">SDPHP</a></li>
-                        <li><a href="/resources">Resources</a></li>
+                        <li class="{{ Menu::activeMenu('/') }}">
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="{{ Menu::activeMenu('about') }}">
+                        <a href="/about">About Us</a></li>
+                        <li class="{{ Menu::activeMenu('presentations') }}">
+                            <a href="/presentations">Presentations</a>
+                        </li>
+                        <li>
+                        <a target="__Blank" href="https://trello.com/b/H7RSRe8m/public-laravel-sdug-board">Trello Board</a>
+                        </li>
+                        <li>
+                            <a target="__Blank" href="http://www.sdphp.org/">SDPHP</a></li>
+                        <li class="{{ Menu::activeMenu('resources') }}">
+                            <a href="/resources">Resources</a>
+                        </li>
                         @if(!Auth::guest())
                             <li><a href="/home">>To Dashboard<</a></li>
                         @endif
