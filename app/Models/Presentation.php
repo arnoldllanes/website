@@ -99,4 +99,14 @@ class Presentation extends Model
     {
         return $this->tags->lists('id')->all();
     }
+
+    /**
+     * A presentation can have many comments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
 }

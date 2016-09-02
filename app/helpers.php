@@ -6,7 +6,7 @@ class Menu {
  {
   $active = '';
 
-  if (Request::is(Request::segment(1) . '/' . $uri . '/*') || Request::is(Request::segment(1) . '/' . $uri) || Request::is($uri))
+  if (Request::is(Request::segment(1) . '/' . $uri . '/*') || Request::is(Request::segment(1) . '/' . $uri) || Request::is($uri) || Request::is($uri . '/' . Request::segment(2)))
   {
    $active = 'active';
   }

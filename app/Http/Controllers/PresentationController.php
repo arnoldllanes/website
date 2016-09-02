@@ -40,10 +40,13 @@ class PresentationController extends Controller
      **/
     public function show($id)
     {
+
         $presentation = Presentation::where('id', $id)->firstOrfail();
         $presentation->load('tags', 'publisher');
 
-        return view('presentations.show')->with('presentation', $presentation);
+        $comments = $presentation->comments()->notReply()->get();
+
+        return view('presentations.show')->with('presentation', $presentation)->with('comments', $comments);
     }
 
     /**
@@ -98,7 +101,7 @@ class PresentationController extends Controller
         return redirect('presentations')->with([
             'flash_message' => 'Presentation was deleted',
             'flash_message_important' => true
-        ]);;
+        ]);
     }
 
     /**
