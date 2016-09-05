@@ -33,7 +33,8 @@
         <div class="container">
 
             <div class="col-md-8 col-md-offset-2 animate-box">
-            @if(!Auth::guest())
+            
+            @if(Auth::user()->isAdmin() || Auth::user()->isMember())
                 <a style="display:inline-block" href="/presentations/{{ $presentation->id }}/edit"><p> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit presentation</p></a>
 
                 <form action="{{ action('PresentationController@destroy', ['presentation' => $presentation->id]) }}" method="POST">
@@ -41,7 +42,13 @@
                     {{ method_field('DELETE') }}
                     <button type="submit" class="btn btn-default">Delete Presentation</button>
                 </form>
+            @endif
 
+            @if(Auth::user()->isAdmin() && $presentation->approved == false)
+                <form action="{{ action('PresentationController@approve', ['presentation' => $presentation->id]) }}" method="POST">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </form>
             @endif
                 <h2 class="text-center">{{ $presentation->title }}</h2>
                 <hr>

@@ -10,6 +10,11 @@
                     <div class="panel-body">
                         <h2><a href="/presentations/create">Post a Presentation</a></h2>
                     </div>
+                    @if(Auth::user()->isAdmin())
+                        @foreach($toApprove as $presentation)
+                            <p>{{ $presentation->title }}</p>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use Twitter;
-use App\Models\Presentation;
 use App\Http\Requests;
+use App\Models\Presentation;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,7 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $toApprove = Presentation::where('approved', false)->get();
+
+        return view('home')->with('toApprove', $toApprove);
     }
 
     /**

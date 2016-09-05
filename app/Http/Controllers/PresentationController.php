@@ -16,6 +16,7 @@ class PresentationController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('admin', ['only' => ['approve']]);
     }
 
     /**
@@ -25,7 +26,7 @@ class PresentationController extends Controller
      */
     public function index()
     {
-        $presentations = Presentation::latest()->get();
+        $presentations = Presentation::where('approved', true)->latest()->get();
         $presentations->load('tags', 'publisher', 'presenter');
 
         return view('presentations.index')->with('presentations', $presentations);
@@ -40,12 +41,15 @@ class PresentationController extends Controller
      **/
     public function show($id)
     {
-
         $presentation = Presentation::where('id', $id)->firstOrfail();
         $presentation->load('tags', 'publisher');
 
         $comments = $presentation->comments()->notReply()->get();
 
+        if($presentation->approved === 0 && Auth::user()->isAdmin() === false) {
+            return back();
+        }
+       
         return view('presentations.show')->with('presentation', $presentation)->with('comments', $comments);
     }
 
@@ -187,17 +191,49 @@ class PresentationController extends Controller
 
         $presenter->save();
 
+        if(Auth::user()->isGuest()){
+            $presentation = Auth::user()->presentations()->create([
+                'user_id' => Auth::user()->id,
+                'presenter_id' => $presenter->id,
+                'published_at' => $request->published_at,
+                'title' => $request->title,
+                'body' => $request->body,
+                'video_embed' => $request->video_embed,
+                'approved' => 0
+            ]);
+
+            $this->syncTags($presentation, $request->input('tag_list'));
+
+            return $presentation;
+        }
+
         $presentation = Auth::user()->presentations()->create([
             'user_id' => Auth::user()->id,
             'presenter_id' => $presenter->id,
             'published_at' => $request->published_at,
             'title' => $request->title,
             'body' => $request->body,
-            'video_embed' => $request->video_embed
+            'video_embed' => $request->video_embed,
+            'approved' => 1
         ]);
 
         $this->syncTags($presentation, $request->input('tag_list'));
 
         return $presentation;
+    }
+
+    /**
+     * Allow admin to approve a presentation.
+     */
+    public function approve($presentation)
+    {
+        $presentation = Presentation::where('id', $presentation)->first();
+
+        $presentation->update(['approved' => 1]);
+
+        return back()->with([
+            'flash_message' => 'Presentation Approved',
+            'flash_message_important' => true
+        ]);
     }
 }
