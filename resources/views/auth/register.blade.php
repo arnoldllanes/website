@@ -14,8 +14,7 @@
                                 <label for="name" class="col-md-4 control-label">Name</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name"
-                                           value="{{ old('name') }}" autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  placeholder="Full Name" autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="help-block">
@@ -29,8 +28,7 @@
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}">
+                                    <input id="email" type="email" class="form-control" name="email" placeholder="Your Email" value="{{ old('email') }}">
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -64,6 +62,21 @@
                                     @if ($errors->has('password_confirmation'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('member_token') ? ' has-error' : '' }}">
+                                <label for="member_token" class="col-md-4 control-label">Member Token <small>(optional)</small></label>
+
+                                <div class="col-md-6">
+                                    <input id="member_token" type="text" class="form-control" name="member_token"
+                                           value="{{ old('member_token') }}" autofocus>
+
+                                    @if ($errors->has('member_token'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('member_token') }}</strong>
                                     </span>
                                     @endif
                                 </div>

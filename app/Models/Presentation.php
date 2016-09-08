@@ -17,7 +17,8 @@ class Presentation extends Model
         'published_at',
         'edited_by',
         'edited_date',
-        'video_embed'
+        'video_embed',
+        'approved'
     ];
 
     protected $dates = ['published_at'];
@@ -31,7 +32,7 @@ class Presentation extends Model
 
     public function scopePublished($query)
     {
-        $query->where('published_at', '<=', Carbon::now());
+        $query->where('published_at', '<=', Carbon::now())->where('approved', true);
     }
 
     /**
@@ -98,5 +99,15 @@ class Presentation extends Model
     public function getTagListAttribute()
     {
         return $this->tags->lists('id')->all();
+    }
+
+    /**
+     * A presentation can have many comments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
     }
 }

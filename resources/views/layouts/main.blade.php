@@ -139,8 +139,11 @@
 <script src="/js/jquery.waypoints.min.js"></script>
 <!-- Main JS (Do not remove) -->
 <script src="/js/main.js"></script>
+
 <!-- App.js -->
+
 <script src="/js/app.js"></script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 

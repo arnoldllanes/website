@@ -6,8 +6,11 @@ use DB;
 use Auth;
 use Carbon\Carbon;
 use App\Models\Tag;
+use App\Http\Requests;
 use App\Models\Presenter;
 use App\Models\Presentation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\PresentationRequest;
 
 class PresentationController extends Controller
@@ -16,6 +19,7 @@ class PresentationController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('admin', ['only' => ['approve']]);
     }
 
     /**
@@ -25,7 +29,7 @@ class PresentationController extends Controller
      */
     public function index()
     {
-        $presentations = Presentation::latest()->get();
+        $presentations = Presentation::where('approved', true)->latest()->get();
         $presentations->load('tags', 'publisher', 'presenter');
 
         return view('presentations.index')->with('presentations', $presentations);
@@ -43,7 +47,13 @@ class PresentationController extends Controller
         $presentation = Presentation::where('id', $id)->firstOrfail();
         $presentation->load('tags', 'publisher');
 
-        return view('presentations.show')->with('presentation', $presentation);
+        $comments = $presentation->comments()->notReply()->get();
+
+        if($presentation->approved === 0 && Auth::user()->isAdmin() === false) {
+            return back();
+        }
+       
+        return view('presentations.show')->with('presentation', $presentation)->with('comments', $comments);
     }
 
     /**
@@ -91,6 +101,10 @@ class PresentationController extends Controller
         return view('presentations.edit')->with('presentation', $presentation)->with('tags', $tags)->with('hasTags', $hasTags);
     }
 
+    /**
+     * Delete a presentation post.
+     */
+
     public function destroy(Presentation $presentation)
     {
         $presentation->delete();
@@ -98,7 +112,22 @@ class PresentationController extends Controller
         return redirect('presentations')->with([
             'flash_message' => 'Presentation was deleted',
             'flash_message_important' => true
-        ]);;
+        ]);
+    }
+
+    /**
+     * Rejects a guest users post.
+     */
+    public function reject(Presentation $presentation, Request $request)
+    {
+        Mail::to($presentation->publisher->email)->send(new \App\Mail\RejectApproval($presentation, $request));
+     
+        $presentation->delete();
+
+        return redirect('home')->with([
+            'flash_message' => 'Successfully rejected post.',
+            'flash_message_important' => true
+        ]);
     }
 
     /**
@@ -184,17 +213,49 @@ class PresentationController extends Controller
 
         $presenter->save();
 
+        if(Auth::user()->isGuest()){
+            $presentation = Auth::user()->presentations()->create([
+                'user_id' => Auth::user()->id,
+                'presenter_id' => $presenter->id,
+                'published_at' => $request->published_at,
+                'title' => $request->title,
+                'body' => $request->body,
+                'video_embed' => $request->video_embed,
+                'approved' => 0
+            ]);
+
+            $this->syncTags($presentation, $request->input('tag_list'));
+
+            return $presentation;
+        }
+
         $presentation = Auth::user()->presentations()->create([
             'user_id' => Auth::user()->id,
             'presenter_id' => $presenter->id,
             'published_at' => $request->published_at,
             'title' => $request->title,
             'body' => $request->body,
-            'video_embed' => $request->video_embed
+            'video_embed' => $request->video_embed,
+            'approved' => 1
         ]);
 
         $this->syncTags($presentation, $request->input('tag_list'));
 
         return $presentation;
+    }
+
+    /**
+     * Allow admin to approve a presentation.
+     */
+    public function approve($presentation)
+    {
+        $presentation = Presentation::where('id', $presentation)->first();
+
+        $presentation->update(['approved' => 1]);
+
+        return back()->with([
+            'flash_message' => 'Presentation Approved',
+            'flash_message_important' => true
+        ]);
     }
 }
