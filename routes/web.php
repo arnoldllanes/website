@@ -13,6 +13,7 @@ Route::get('resources', 'PageController@resources');
 //Presentations
 Route::resource('presentations', 'PresentationController');
 Route::post('presentations/approve/{presentation}', 'PresentationController@approve');
+Route::post('presentations/reject/{presentation}', 'PresentationController@reject');
 
 //Tags
 Route::resource('tags', 'TagController', ['only' => ['index', 'show', 'store']]);

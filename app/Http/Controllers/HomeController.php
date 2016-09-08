@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 use Twitter;
 use App\Http\Requests;
 use App\Models\Presentation;
@@ -28,9 +29,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $toApprove = Presentation::where('approved', false)->get();
+        // $toApprove = Presentation::where('approved', false)->get();
+        if(Auth::user()->isAdmin()){
+            $presentations = Presentation::all();
+        } else if (Auth::user()->isMember()){
+            $presentations = Presentation::where('user_id', Auth::user()->id)->get();
+        } else if (Auth::user()->isGuest()){
+            $presentations = Presentation::where('user_id', Auth::user()->id)->get();
+        }
 
-        return view('home')->with('toApprove', $toApprove);
+        return view('home')->with('presentations', $presentations);
     }
 
     /**

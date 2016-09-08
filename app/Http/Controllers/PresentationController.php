@@ -6,8 +6,11 @@ use DB;
 use Auth;
 use Carbon\Carbon;
 use App\Models\Tag;
+use App\Http\Requests;
 use App\Models\Presenter;
 use App\Models\Presentation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\PresentationRequest;
 
 class PresentationController extends Controller
@@ -98,12 +101,31 @@ class PresentationController extends Controller
         return view('presentations.edit')->with('presentation', $presentation)->with('tags', $tags)->with('hasTags', $hasTags);
     }
 
+    /**
+     * Delete a presentation post.
+     */
+
     public function destroy(Presentation $presentation)
     {
         $presentation->delete();
 
         return redirect('presentations')->with([
             'flash_message' => 'Presentation was deleted',
+            'flash_message_important' => true
+        ]);
+    }
+
+    /**
+     * Rejects a guest users post.
+     */
+    public function reject(Presentation $presentation, Request $request)
+    {
+        Mail::to($presentation->publisher->email)->send(new \App\Mail\RejectApproval($presentation, $request));
+     
+        $presentation->delete();
+
+        return redirect('home')->with([
+            'flash_message' => 'Successfully rejected post.',
             'flash_message_important' => true
         ]);
     }

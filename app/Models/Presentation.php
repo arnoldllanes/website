@@ -32,7 +32,7 @@ class Presentation extends Model
 
     public function scopePublished($query)
     {
-        $query->where('published_at', '<=', Carbon::now());
+        $query->where('published_at', '<=', Carbon::now())->where('approved', true);
     }
 
     /**

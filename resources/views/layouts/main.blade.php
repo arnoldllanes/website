@@ -141,9 +141,9 @@
 <script src="/js/main.js"></script>
 
 <!-- App.js -->
-@unless(Menu::activeMenu('presentations'))
-    <script src="/js/app.js"></script>
-@endunless
+
+<script src="/js/app.js"></script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
