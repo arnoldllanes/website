@@ -62,10 +62,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['member_token'] === env('ADMIN_TOKEN')){
+            $role = 'admin';
+        } else if($data['member_token'] === env('MEMBER_TOKEN')){
+            $role = 'member';
+        } else {
+            $role = 'guest';
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role' => $role
         ]);
     }
 }
