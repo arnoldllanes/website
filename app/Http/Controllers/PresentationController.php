@@ -23,9 +23,9 @@ class PresentationController extends Controller
     }
 
     /**
-     * Display listing of the resource.
+     * Display a listing of the resource.
      *
-     * @return response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -38,10 +38,9 @@ class PresentationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
-     * @return Response
-     **/
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         $presentation = Presentation::where('id', $id)->firstOrfail();
@@ -57,9 +56,9 @@ class PresentationController extends Controller
     }
 
     /**
-     * Display form to create an presentation.
+     * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -70,24 +69,33 @@ class PresentationController extends Controller
 
 
     /**
-     * Store the data to create an create.
+     * Store a newly created resource in storage.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(PresentationRequest $request)
     {
         $this->createPresentation($request);
 
+        if(Auth::user()->isGuest()){
+            return redirect('presentations')->with([
+                'flash_message' => 'Your presentation has been queued for approval. Thanks!',
+                'flash_message_important' => true
+            ]);
+        }
+
         return redirect('presentations')->with([
-            'flash_message' => 'Your presentation has been created',
+            'flash_message' => 'Your presentation has been created.',
             'flash_message_important' => true
         ]);
     }
 
     /**
-     * Display the presentation for editing.
+     * Show the form for editing the specified resource.
      *
-     * @return Reponse
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function edit(Presentation $presentation)
     {
@@ -102,7 +110,10 @@ class PresentationController extends Controller
     }
 
     /**
-     * Delete a presentation post.
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
 
     public function destroy(Presentation $presentation)
@@ -131,9 +142,11 @@ class PresentationController extends Controller
     }
 
     /**
-     * Update the presentation.
+     * Update the specified resource in storage.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function update(PresentationRequest $request, Presentation $presentation)
     {

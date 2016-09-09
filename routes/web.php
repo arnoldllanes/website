@@ -27,4 +27,5 @@ Route::resource('presenters', 'PresenterController', ['only' => ['index', 'show'
 // Comments
 Route::post('comment/{presentationId}', 'CommentController@postComment');
 Route::post('comment/{presentationId}/{commentId}/reply', 'CommentController@postReply');
-Route::get('comment/{commentId}/like', 'CommentController@getLike');
+Route::get('comment/{commentId}/like', 'CommentController@like');
+Route::post('comment/{presentaitonId}/flag', 'CommentController@flag');

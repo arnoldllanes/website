@@ -15,9 +15,9 @@ class TagController extends Controller
     }
 
     /**
-     * Display listing of the resource.
+     * Display a listing of the resource.
      *
-     * @return response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -38,10 +38,9 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
-     * @return Response
-     **/
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         $tag = Tag::where('id', $id)->firstOrfail();
@@ -51,9 +50,10 @@ class TagController extends Controller
     }
 
     /**
-     * Store tag. 
+     * Store a newly created resource in storage.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {   

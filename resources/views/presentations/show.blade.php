@@ -33,7 +33,8 @@
         <div class="container">
 
             <div class="col-md-8 col-md-offset-2 animate-box">
-            @if(Auth::user()->isAdmin() && $presentation->approved == false)
+
+            @if(Auth::user() !== null && Auth::user()->isAdmin() && $presentation->approved == false)
                 <form action="{{ action('PresentationController@approve', ['presentation' => $presentation->id]) }}" method="POST">
                     {{ csrf_field() }}
                     <button type="submit" class="btn btn-success">Approve</button>
@@ -44,7 +45,7 @@
             @endif
             
 
-            @if(Auth::user()->isAdmin() || Auth::user()->isMember())
+            @if(Auth::user() !== null && Auth::user()->isAdmin() || Auth::user() !== null && Auth::user()->isMember())
                 <a style="display:inline-block" href="/presentations/{{ $presentation->id }}/edit"><p> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit presentation</p></a>
 
                 <form action="{{ action('PresentationController@destroy', ['presentation' => $presentation->id]) }}" method="POST">
@@ -63,7 +64,7 @@
                 </div>
             @endif
 
-                <p>{{ $presentation->body }}</p>
+                <p style="word-wrap: break-word;">{{ $presentation->body }}</p>
 
                 <hr>
 
@@ -120,13 +121,14 @@
                         <img class="media-object" alt="" src="{{ $comment->user->getAvatarUrl() }}">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">{{ $comment->user->name }}</h4>
+                        <h4 style="display:inline-block" class="media-heading">{{ $comment->user->name }}</h4>
+                        <span style="display:inline-block; margin-left: 85%"><i class="fa fa-flag" aria-hidden="true"></i></span>
                         <p>{{ $comment->body }}</p>
                         <ul class="list-inline">
                             <li>{{ $comment->created_at->diffForHumans() }}</li>
                             
-                            @if ($comment->user->id !== Auth::user()->id)
-                                <li><a href="{{ action('CommentController@getLike', ['commentId' => $comment->id]) }}">Like</a></li>
+                            @if (Auth::user() !== null && $comment->user->id !== Auth::user()->id)
+                                <li><a href="{{ action('CommentController@like', ['commentId' => $comment->id]) }}">Like</a></li>
                             @endif
                             <li>{{ $comment->likes->count() }} {{ str_plural('like', $comment->likes->count()) }}</li>
                         </ul>
@@ -137,12 +139,13 @@
                                     <img class="media-object" src="{{ $reply->user->getAvatarUrl() }}">
                                 </a>
                                 <div class="media-body">
-                                    <h5 class="media-heading">{{ $reply->user->name }}</h5>
+                                    <h4 style="display:inline-block" class="media-heading">{{ $reply->user->name  }}</h4>
+                                        <span style="display:inline-block; margin-left: 84%"><i class="fa fa-flag" aria-hidden="true"></i></span>
                                     <p>{{ $reply->body }}</p>
                                     <ul class="list-inline">
-                                        <li>{{ $reply->created_at->diffForHumans() }}.</li>
-                                        @if ($reply->user->id !== Auth::user()->id)
-                                        <li><a href="{{ action('CommentController@getLike', ['commentId' => $reply->id]) }}">Like</a></li>
+                                        <li>{{ $reply->created_at->diffForHumans() }}</li>
+                                        @if (Auth::user() !== null && $reply->user->id !== Auth::user()->id)
+                                        <li><a href="{{ action('CommentController@like', ['commentId' => $reply->id]) }}">Like</a></li>
                                         @endif
                                         <li>{{ $reply->likes->count() }} {{ str_plural('like', $reply->likes->count()) }}</li>
                                     </ul>
@@ -156,7 +159,11 @@
                                     <span class="help-block">{{ $errors->first("reply-{$comment->id}") }}</span>
                                 @endif
                             </div>
-                            <input type="submit" value="Reply" class="btn btn-default btn-sm">
+                                @if(Auth::guest())
+                                    <button>Sign in</button>
+                                @else
+                                    <input type="submit" value="Reply" class="btn btn-default btn-sm">
+                                @endif
                             <input type="hidden" name="_token" value="{{ Session::token() }}">
                         </form>
                     </div>

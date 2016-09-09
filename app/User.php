@@ -57,6 +57,11 @@ class User extends Authenticatable
         return (bool) $comment->likes->where('user_id', $this->id)->count();
     }
 
+    public function hasFlaggedComment(Models\Comment $comment)
+    {
+        return (bool) $comment->flags->where('user_id', $this->id)->count();
+    }
+
     /**
      * A user is associated with many likes to comments.
      *
@@ -65,6 +70,11 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany('App\Models\Like', 'user_id');
+    }
+
+    public function flags()
+    {
+        return $this->hasMany('App\Models\Flag', 'user_id');
     }
 
     public function isAdmin()

@@ -50,8 +50,19 @@ class Comment extends Model
 		return $this->hasMany('App\Models\Comment', 'parent_id');
 	}
 
+	/**
+     * Get all of the comments likes.
+     */
 	public function likes()
 	{
 		return $this->morphMany('App\Models\Like', 'likeable');
+	}
+
+	/**
+     * Get all of the comments flags.
+     */
+	public function flags()
+	{
+		return $this->morphMany('App\Models\Flag', 'flagable');
 	}
 }
