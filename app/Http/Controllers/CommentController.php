@@ -65,7 +65,7 @@ class CommentController extends Controller
 	/**
 	 * Add a like associated with the comment of a presentation.
 	 */
-	public function getLike($commentId)
+	public function like($commentId)
 	{
 		$comment = Comment::find($commentId);
 
@@ -86,6 +86,31 @@ class CommentController extends Controller
 		]);
 
 		Auth::user()->likes()->save($like);
+
+		return redirect()->back();
+	}
+
+	public function flag($commentId)
+	{
+		$comment = Comment::find($commentId);
+
+		if (!$comment){
+			return back();
+		}
+
+		if(!Auth::user()) {
+			return redirect()->route('home');
+		}
+
+		if (Auth::user()->hasFlagged($comment)) {
+			return back();
+		}
+
+		$flag = $comment->flags()->create([
+			'user_id' => Auth::user()->id
+		]);
+
+		Auth::user()->flags()->save($flag);
 
 		return redirect()->back();
 	}

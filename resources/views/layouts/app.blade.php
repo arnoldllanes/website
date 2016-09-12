@@ -95,7 +95,7 @@
 @yield('content')
 
 <!-- Scripts -->
-<script src="/js/secondary.js"></script>
+    <!-- <script src="/js/secondary.js"></script> -->
 <!-- jQuery -->
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 
