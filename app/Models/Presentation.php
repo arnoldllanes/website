@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Presentation extends Model
 {
+    use Searchable;
     /**
      *  Attributes that are mass assignable.
      */
