@@ -9,7 +9,8 @@ class Comment extends Model
     protected $fillable = [
     	'presentation_id',
     	'user_id',
-		'body'
+		'body',
+		'flagged'
 	];
 
 	/**

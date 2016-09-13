@@ -21,7 +21,8 @@ class CommentController extends Controller
 
 		$presentation->comments()->create([
 			'user_id' => Auth::user()->id,
-			'body' 	  => $request->input('comment')
+			'body' 	  => $request->input('comment'),
+			'flagged' => 0
 		]);
 
 		return redirect()->route('presentations.show', $presentation->id)->with([

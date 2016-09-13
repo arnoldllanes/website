@@ -111,8 +111,9 @@
 <body>
 <div class="box-wrap">
     @include('layouts.navigation')
-    @include('partials.flash')
 
+    @include('partials.flash')
+    
     @yield('content')
 
     <footer id="footer" role="contentinfo">
