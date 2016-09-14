@@ -10,8 +10,8 @@ Route::get('home', 'HomeController@index');
 Route::get('about', 'PageController@about');
 Route::get('resources', 'PageController@resources');
 
-// Articles
-Route::resource('articles', 'ArticleController');
+// Posts
+Route::resource('posts', 'PostController');
 
 // Presentations
 Route::resource('presentations', 'PresentationController');

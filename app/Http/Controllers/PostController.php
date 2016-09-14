@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class ArticleController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        return 'Artciles';
+        return 'Posts Would go here';
     }
 
     /**
