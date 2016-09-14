@@ -50,6 +50,7 @@ class HomeController extends Controller
     {
         $latestPresentations = Presentation::published()->latest()->first();
 
-        return view('pages.home')->with('latest_article', $latestPresentations)->with('tweets', $this->getTweets());
+        return view('pages.home')->with('latest_presentations', $latestPresentations)->with('tweets',
+            $this->getTweets());
     }
 }

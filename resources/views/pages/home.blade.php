@@ -31,22 +31,24 @@
                         <div class="image-popup text-center">
                             <div class="post animate-box">
                                 <img src="images/blogicon.png" alt="Product">
-                                @if($latest_article)
+                                @if($latest_presentations)
                                 <div>
-                                    <h3><a href="/articles/{{ $latest_article->id }}">{{ $latest_article->title }}</a>
+                                    <h3>
+                                        <a href="/post/{{ $latest_presentations->id }}">{{ $latest_presentations->title }}</a>
                                     </h3>
-                                <!-- <p>{{ str_limit($latest_article->body, $limit = 25, $end = '...') }}</p> -->
-                                    <p>Presented by: {{ $latest_article->presenter->name }}</p>
-                                    <span><a href="/articles/{{ $latest_article->id }}">Read Article...</a></span>
+                                <!-- <p>{{ str_limit($latest_presentations->body, $limit = 25, $end = '...') }}</p> -->
+                                    <p>Presented by: {{ $latest_presentations->presenter->name }}</p>
+                                    <span><a href="/post/{{ $latest_presentations->id }}">Read Post...</a></span>
                                 </div>
                                 <hr>
-                                <a type="button" class="btn btn-primary" href="/articles">View Blog Archive</a>
+                                    <a type="button" class="btn btn-primary" href="/posts">View Blog Archive</a>
                                 @else
                                 <div class="work-title">
                                     <h3>Sorry!!!</h3>
                                     <p>No blog posts at this time.</p>
                                     @if(!Auth::guest())
-                                        <a type="button" class="btn btn-primary" href="/articles/create">Create Blog Post</a>
+                                        <a type="button" class="btn btn-primary" href="/posts/create">Create Blog
+                                            Post</a>
                                     @endif
                                 </div>
                                 @endif
