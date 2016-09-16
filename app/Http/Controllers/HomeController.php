@@ -21,6 +21,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['home']]);
+        $this->middleware('admin', ['only' => ['needsApproval']]);
     }
 
     /**
@@ -53,5 +54,85 @@ class HomeController extends Controller
 
         return view('pages.home')->with('latest_posts', $latestPosts)->with('tweets',
             $this->getTweets());
+    }
+
+    /**
+     * Dashboard presentations view.
+     */
+    public function dashPresentations()
+    {
+        if(Auth::user()->isAdmin()){
+            $presentations = Presentation::all();
+        }
+
+        if(!Auth::user()->isAdmin()){
+            $presentations = Auth::user()->presentations()->get();
+        }
+
+        return view('dashboard.presentations')->with('presentations', $presentations);
+    }
+
+    /**
+     * Dashboard posts view.
+     */
+    public function dashPosts()
+    {
+        if(Auth::user()->isAdmin()){
+            $posts = Post::all();
+        }
+
+        if(!Auth::user()->isAdmin()){
+            $posts = Auth::user()->posts()->get();
+        }
+        return view('dashboard.posts')->with('posts', $posts);
+    }
+
+    /**
+     * Dashboard needs approval view.
+     */
+    public function needsApproval()
+    {
+        if(Auth::user()->isAdmin()){
+            $presentationApprovals = Presentation::where('approved', false)->get();
+            $blogApprovals = Post::where('approved', false)->get();
+
+            $presentationCount = Presentation::where('approved', false)->count();
+            $blogCount = Post::where('approved', false)->count();
+
+            $approvalCount = $presentationCount + $blogCount;
+        }
+
+        if(Auth::user()->isGuest()){
+            $presentationApprovals = Auth::user()->presentations()->where('approved', false)->get();
+            $blogApprovals = Auth::user()->posts()->where('approved', false)->get();
+
+            $presentationCount = Auth::user()->presentations()->where('approved', false)->count();
+            $blogCount = Auth::user()->posts()->where('approved', false)->count();
+
+            $approvalCount = $presentationCount + $blogCount;
+        }
+
+        return view('dashboard.needsapproval')
+            ->with('presentationApprovals', $presentationApprovals)
+            ->with('blogApprovals', $blogApprovals)
+            ->with('approvalCount', $approvalCount);
+    }
+
+    public function getApprovalCount()
+    {
+        if(Auth::user()->isAdmin()){
+            $presentationCount = Presentation::where('approved', false)->count();
+            $blogCount = Post::where('approved', false)->count();
+
+            return $this->approvalCount = $presentationCount + $blogCount;
+        }
+
+        if(Auth::user()->isGuest()){
+            $presentationCount = Auth::user()->presentations()->where('approved', false)->count();
+            $blogCount = Auth::user()->posts()->where('approved', false)->count();
+
+            return $this->approvalCount = $presentationCount + $blogCount;
+        }
+       
     }
 }

@@ -111,7 +111,6 @@
 <body>
 <div class="box-wrap">
     @include('layouts.navigation')
-        <search></search>
 
     @include('partials.flash')
     

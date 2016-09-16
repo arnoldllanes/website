@@ -2,18 +2,9 @@
 
 @section('content')
     <div class="container">
+    <h2 class="text-center">Welcome, {{ Auth::user()->name }}</h2>
+        @include('dashboard.partials.navigation')
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
-
-                    <div class="panel-body">
-                        <h2><a href="/presentations/create">Post a Presentation</a></h2>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">

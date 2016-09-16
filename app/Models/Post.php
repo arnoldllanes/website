@@ -12,6 +12,7 @@ class Post extends Model
 	    'title',
 	    'body',
 	    'published_at',
+        'approved'
     ];
 
 	protected $dates = ['published_at'];

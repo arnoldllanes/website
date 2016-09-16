@@ -15,7 +15,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('admin', ['only' => ['store', 'create', 'edit']]);
+        $this->middleware('admin', ['only' => ['approve', 'reject']]);
     }
 
     /**
@@ -25,10 +25,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('published_at')->published()->get();
-        $latest = Post::latest()->first();
+        $posts = Post::where('approved', true)->latest()->get();
+        $posts->load('tags');
 
-        return view('posts.index')->with('posts', $posts)->with('latest', $latest);
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -52,6 +52,13 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $this->createPost($request);
+
+        if(Auth::user()->isGuest()){
+            return redirect('posts')->with([
+                'flash_message' => 'Your post has been queued for approval. Thanks!',
+                'flash_message_important' => true
+            ]);
+        }
 
         return redirect('posts')->with([
             'flash_message' => 'Your post has been created.',
@@ -110,6 +117,21 @@ class PostController extends Controller
         //
     }
 
+    /**
+     * Allow admin to approve a presentation.
+     */
+    public function approve($post)
+    {
+        $post = Post::where('id', $post)->first();
+
+        $post->update(['approved' => 1]);
+
+        return back()->with([
+            'flash_message' => 'Presentation Approved',
+            'flash_message_important' => true
+        ]);
+    }
+
     private function syncTags(post $post, $tags)
    {
       
@@ -119,7 +141,27 @@ class PostController extends Controller
 
    private function createPost(PostRequest $request)
    {
-         $post = Auth::user()->posts()->create($request->all());
+        if(Auth::user()->isGuest()){
+            $post = Auth::user()->posts()->create([
+                'user_id' => Auth::user()->id,
+                'published_at' => $request->published_at,
+                'title' => $request->title,
+                'body' => $request->body,
+                'approved' => 0
+            ]);
+
+            $this->syncTags($post, $request->input('tag_list'));
+
+            return $post;
+        }
+
+         $post = Auth::user()->posts()->create([
+            'user_id' => Auth::user()->id,
+            'published_at' => $request->published_at,
+            'title' => $request->title,
+            'body' => $request->body,
+            'approved' => 1
+        ]);
 
          $this->syncTags($post, $request->input('tag_list'));
 
