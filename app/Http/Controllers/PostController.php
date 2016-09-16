@@ -15,7 +15,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('admin', ['only' => ['approve', 'reject']]);
+        $this->middleware('admin', ['only' => ['approve', 'reject', 'destroy']]);
     }
 
     /**
@@ -112,9 +112,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect('posts')->with([
+            'flash_message' => 'Post was deleted',
+            'flash_message_important' => true
+        ]);
     }
 
     /**

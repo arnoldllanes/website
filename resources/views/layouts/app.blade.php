@@ -73,8 +73,8 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li> <a href="">Create Blog </a></li>
-                            <li><a href="">Create Presentation </a></li>
+                            <li> <a href="/posts/create">Create Blog </a></li>
+                            <li><a href="/presentations/create">Create Presentation </a></li>
                         </ul>
                     </li>
 
