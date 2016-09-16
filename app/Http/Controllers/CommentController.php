@@ -56,6 +56,7 @@ class CommentController extends Controller
 			'user_id'			=> Auth::user()->id,
 			'presentation_id' 	=> $presentationId,
 			'body'				=> $request->input("reply-{$commentId}"),
+			'flagged'    		=> 0
 		]);
 
 		$comment->replies()->save($reply);

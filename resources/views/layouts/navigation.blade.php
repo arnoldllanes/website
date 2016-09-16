@@ -26,6 +26,9 @@
                         <li class="{{ Menu::activeMenu('presentations') }}">
                             <a href="/presentations">Presentations</a>
                         </li>
+                        <li class="{{ Menu::activeMenu('postss') }}">
+                            <a href="/posts">Blogs</a>
+                        </li>
                         <li>
                         <a target="__Blank" href="https://trello.com/b/H7RSRe8m/public-laravel-sdug-board">Trello Board</a>
                         </li>
@@ -34,6 +37,10 @@
                         <li class="{{ Menu::activeMenu('resources') }}">
                             <a href="/resources">Resources</a>
                         </li>
+                        <li>
+                            <a href="">Search SDLUG</a>
+                        </li>
+                        
                         @if(!Auth::guest())
                             <li><a href="/home">>To Dashboard<</a></li>
                         @endif
@@ -46,4 +53,3 @@
                 </div>
             </div>
         </nav>
-        <search></search>

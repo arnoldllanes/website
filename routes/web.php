@@ -10,8 +10,8 @@ Route::get('home', 'HomeController@index');
 Route::get('about', 'PageController@about');
 Route::get('resources', 'PageController@resources');
 
-// Articles
-Route::resource('articles', 'ArticleController');
+// Posts
+Route::resource('posts', 'PostController');
 
 // Presentations
 Route::resource('presentations', 'PresentationController');
@@ -25,7 +25,7 @@ Route::resource('tags', 'TagController', ['only' => ['index', 'show', 'store']])
 Route::resource('presenters', 'PresenterController', ['only' => ['index', 'show']]);
 
 // Comments
-Route::post('comment/{presentationId}', 'CommentController@postComment');
+Route::post('comment/{postId}/{type}', 'CommentController@postComment');
 Route::post('comment/{presentationId}/{commentId}/reply', 'CommentController@postReply');
 Route::get('comment/{commentId}/like', 'CommentController@like');
 Route::post('comment/{presentaitonId}/flag', 'CommentController@flag');

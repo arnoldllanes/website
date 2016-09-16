@@ -1,8 +1,8 @@
 <template>
-<div class="col-md-4 col-md-push-8">
+<div class="col-md-6 col-md-offset-8 animate-box">
 	<form method="GET" role="search" class="navbar-form navbar-left">
         <div class="form-group">
-            <input type="text" name="query" class="form-control" v-model="query" placeholder="Find friends or group"/>
+            <input type="text" name="query" class="form-control" v-model="query" placeholder="Search SDLUG"/>
         
             <a data-toggle="modal" data-target="#searchModal" type="button" @click="submitQuery" class="btn btn-primary">Search</a>
         </div>

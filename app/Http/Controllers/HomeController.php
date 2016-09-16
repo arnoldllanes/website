@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use Twitter;
+use App\Models\Post;
 use App\Http\Requests;
 use App\Models\Presentation;
 use Illuminate\Http\Request;
@@ -48,8 +49,9 @@ class HomeController extends Controller
      */
     public function home()
     {
-        $latestPresentations = Presentation::published()->latest()->first();
+        $latestPosts = Post::published()->latest()->first();
 
-        return view('pages.home')->with('latest_article', $latestPresentations)->with('tweets', $this->getTweets());
+        return view('pages.home')->with('latest_posts', $latestPosts)->with('tweets',
+            $this->getTweets());
     }
 }

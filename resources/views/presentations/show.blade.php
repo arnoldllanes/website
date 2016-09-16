@@ -93,7 +93,7 @@
             </div>
 
             <div class="col-md-8 col-md-push-1">
-                <form action="{{ action('CommentController@postComment', ['presentation' => $presentation->id]) }}" method="post">
+                <form action="{{ action('CommentController@postComment', ['postId' => $presentation->id, 'type' => 'presentation']) }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <textarea placeholder="Comment on {{ $presentation->title }}" name="comment" class="form-control" rows="2"></textarea>

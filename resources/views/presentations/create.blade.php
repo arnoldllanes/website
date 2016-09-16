@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1 class="text-center">Create blog post</h1>
+    <h1 class="text-center">Create presentation</h1>
    
     <hr>
     @if(Auth::user()->isGuest())
