@@ -150,9 +150,15 @@ class PresentationController extends Controller
      */
     public function update(PresentationRequest $request, Presentation $presentation)
     {
-        $presenter = Presenter::where('name', $request->presenter)->first();
+        $presenter = Presenter::where('name', $request->presenter)->first();        
+        $this->updatePresentationInfo($presenter, $request, $presentation);
+        
+        return redirect()->route('presentations.show', $presentation->id);
+    }
 
-         if ($presenter) {
+    private function updatePresentationInfo($presenter, $request, $presentation)
+    {
+        if ($presenter) {
             $presenter->email   = $request->presenter_email;
             $presenter->website = $request->presenter_website;
 
@@ -178,16 +184,14 @@ class PresentationController extends Controller
             ]);
         }
 
-        $presentation->update([
-            'title' => $request->title,
-            'body'  => $request->body,
-            'edited_by' => Auth::user()->name,
-            'edited_date' => Carbon::now()
-        ]);
+            $presentation->update([
+                'title' => $request->title,
+                'body'  => $request->body,
+                'edited_by' => Auth::user()->name,
+                'edited_date' => Carbon::now()
+            ]);
 
-        $this->syncTags($presentation, $request->input('tag_list'));
-
-        return redirect()->route('presentations.show', $presentation->id);
+            $this->syncTags($presentation, $request->input('tag_list'));
     }
 
     /**
@@ -211,6 +215,12 @@ class PresentationController extends Controller
     {
         $presenter = Presenter::where('name', $request->presenter)->first();
 
+        $this->createOrUpdatePresenterInfo($presenter, $request);
+
+    }
+
+    private function createOrUpdatePresenterInfo($presenter, $request)
+    {
         if ($presenter) {
             $presenter->email   = $request->presenter_email;
             $presenter->website = $request->presenter_website;

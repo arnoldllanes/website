@@ -26,8 +26,28 @@
 
     <main id="main">
         <div class="container">
-
             <div class="col-md-8 col-md-offset-2 animate-box">
+
+                @if(Auth::user() !== null && Auth::user()->isAdmin() && $post->approved == false)
+                <form action="{{ action('PostController@approve', ['post' => $post->id]) }}" method="POST">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </form>
+
+                <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#rejectPost">Reject Post</a>
+                        
+            @endif
+            
+
+            @if(Auth::user() !== null && Auth::user()->isAdmin() || Auth::user() !== null && Auth::user()->isMember())
+                <a style="display:inline-block" href="/posts/{{ $post->id }}/edit"><p> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit post</p></a>
+
+                <form action="{{ action('PostController@destroy', ['post' => $post->id]) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="btn btn-default">Delete Post</button>
+                </form>
+            @endif
 
                 <h2 class="text-center">{{ $post->title }}</h2>
                 <hr>
@@ -43,7 +63,7 @@
                 @endif
             </div>
             <!-- <div class="col-md-4"></div> -->
-
+            @include('partials.modals.reject-post')
         </div>
     </main>
 

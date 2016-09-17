@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -83,11 +85,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(post $post)
+    public function edit(Post $post)
     {
-        $tags = Tag::lists('name', 'id');
+        $tags = Tag::all('name', 'id');
+        $hasTags = [];
 
-        return view('posts.edit')->with('post', $post)->with('tags', $tags);
+        foreach($post->tags as $tag ){
+            $hasTags[] = $tag->id;
+        };
+        
+        return view('posts.edit')->with('post', $post)->with('tags', $tags)->with('hasTags', $hasTags);
     }
 
     /**
@@ -97,13 +104,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $post->update($request->all());
+    public function update(PostRequest $request, Post $post)
+    {   
+        $post->update([
+                'title' => $request->title,
+                'body'  => $request->body,
+                'edited_by' => Auth::user()->name,
+                'edited_date' => Carbon::now()
+            ]);
 
-        $this->syncTags($post, $request->input('tag_list'));
-
-        return redirect('posts');
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -137,13 +147,17 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * Syncs tags.
+     */
     private function syncTags(post $post, $tags)
-   {
-      
+   {   
       $post->tags()->sync(!$tags ? [] : $tags);
-   
    }
 
+   /**
+    * Creates a post.
+    */
    private function createPost(PostRequest $request)
    {
         if(Auth::user()->isGuest()){
@@ -172,6 +186,18 @@ class PostController extends Controller
 
          return $post;
    }
+
+    public function reject(Post $post, Request $request)
+    {
+        Mail::to($post->owner->email)->send(new \App\Mail\RejectPost($post, $request));
+     
+        $post->delete();
+
+        return redirect('home')->with([
+            'flash_message' => 'Post has been rejected and email sent to publisher.',
+            'flash_message_important' => true
+        ]);
+    }
 
 
 }

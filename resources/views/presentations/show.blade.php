@@ -1,4 +1,5 @@
 @extends('layouts.main')
+
 @section('content')
     <section id="intro" style="padding-bottom: 0">
         <div class="container">
