@@ -1,6 +1,13 @@
 <?php
 
+
 Route::get('/', 'HomeController@home');
+
+// Dashboard
+
+Route::get('needsapproval', 'HomeController@needsApproval');
+Route::get('dashboard/presentations', 'HomeController@dashPresentations');
+Route::get('dashboard/posts', 'HomeController@dashPosts');
 
 // Auth
 Auth::routes();
@@ -12,6 +19,8 @@ Route::get('resources', 'PageController@resources');
 
 // Posts
 Route::resource('posts', 'PostController');
+Route::post('posts/approve/{post}', 'PostController@approve');
+Route::post('posts/reject/{post}', 'PostController@reject');
 
 // Presentations
 Route::resource('presentations', 'PresentationController');
@@ -25,7 +34,10 @@ Route::resource('tags', 'TagController', ['only' => ['index', 'show', 'store']])
 Route::resource('presenters', 'PresenterController', ['only' => ['index', 'show']]);
 
 // Comments
-Route::post('comment/{presentationId}', 'CommentController@postComment');
-Route::post('comment/{presentationId}/{commentId}/reply', 'CommentController@postReply');
+Route::post('comment/{id}/{type}', 'CommentController@postComment');
+Route::post('comment/{id}/{commentId}/{type}/reply', 'CommentController@postReply');
 Route::get('comment/{commentId}/like', 'CommentController@like');
 Route::post('comment/{presentaitonId}/flag', 'CommentController@flag');
+
+// Search
+Route::get('/search/{query}', 'SearchController@getResults');

@@ -6,11 +6,11 @@
                     <div class="fh5co-navbar-brand">
                         @if(!Auth::guest())
                             <a class="fh5co-logo" href="/home">
-                                <img src="/images/logo.png" style="background-color:black" alt="Closest Logo">
+                                <img src="/images/logo.png" style="background-color:black" alt="SDLUG Logo">
                             </a>
                         @else
                             <a class="fh5co-logo" href="/">
-                                <img src="/images/logo.png" style="background-color:black" alt="Closest Logo">
+                                <img src="/images/logo.png" style="background-color:black" alt="SDLUG Logo">
                             </a>
                         @endif
 
@@ -26,6 +26,9 @@
                         <li class="{{ Menu::activeMenu('presentations') }}">
                             <a href="/presentations">Presentations</a>
                         </li>
+                        <li class="{{ Menu::activeMenu('postss') }}">
+                            <a href="/posts">Blogs</a>
+                        </li>
                         <li>
                         <a target="__Blank" href="https://trello.com/b/H7RSRe8m/public-laravel-sdug-board">Trello Board</a>
                         </li>
@@ -34,6 +37,10 @@
                         <li class="{{ Menu::activeMenu('resources') }}">
                             <a href="/resources">Resources</a>
                         </li>
+                        <li>
+                            <a href="">Search SDLUG</a>
+                        </li>
+                        
                         @if(!Auth::guest())
                             <li><a href="/home">>To Dashboard<</a></li>
                         @endif

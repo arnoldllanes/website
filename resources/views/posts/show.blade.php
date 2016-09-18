@@ -1,27 +1,21 @@
 @extends('layouts.main')
 
 @section('content')
-    <section id="intro" style="padding-bottom: 0">
+  <section id="intro" style="padding-bottom: 0">
         <div class="container">
             <div class="row" style="padding-top:50px">
                 <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
                     <div class="intro animate-box">
 
-                        <h2>Presented By: <a href="/presenters/{{ $presentation->presenter->id }}">{{ $presentation->presenter->name }}</a> <small><em>Posted: {{ Carbon\Carbon::parse($presentation->created_at)->diffForHumans() }}</em></small></h2>
+                        <h2>Presented By: <a href="/presenters/{{ $post->owner->id }}">{{ $post->owner->name }}</a> <small><em>Posted: {{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</em></small></h2>
                    
-                            @if($presentation->presenter->email)
-                                <p><strong>Email: </strong>{{ $presentation->presenter->email }}</p>
-                            @endif
-                            @if($presentation->presenter->website)
-                                <p><strong>Website: </strong><a href="http://{{ $presentation->presenter->website }}">{{ $presentation->presenter->website }}</a></p>
-                            @endif
                         
                     </div>
                     <p class="animate-box" style="display:inline-block">
-                    @if($presentation->tags->count() !== 0)
+                    @if($post->tags->count() !== 0)
                         Tags:
                     @endif
-                    @foreach($presentation->tags as $tag)
+                    @foreach($post->tags as $tag)
                         <li class="animate-box" style="display: inline-block"><a href="/tags/{{ $tag->id }}">{{ $tag->name }}</a></li>
                     @endforeach
                     </p>
@@ -32,59 +26,48 @@
 
     <main id="main">
         <div class="container">
-
             <div class="col-md-8 col-md-offset-2 animate-box">
 
-            @if(Auth::user() !== null && Auth::user()->isAdmin() && $presentation->approved == false)
-                <form action="{{ action('PresentationController@approve', ['presentation' => $presentation->id]) }}" method="POST">
+                @if(Auth::user() !== null && Auth::user()->isAdmin() && $post->approved == false)
+                <form action="{{ action('PostController@approve', ['post' => $post->id]) }}" method="POST">
                     {{ csrf_field() }}
                     <button type="submit" class="btn btn-success">Approve</button>
                 </form>
 
-                <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#rejectPresentation">Reject Post</a>
+                <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#rejectPost">Reject Post</a>
                         
             @endif
             
 
             @if(Auth::user() !== null && Auth::user()->isAdmin() || Auth::user() !== null && Auth::user()->isMember())
-                <a style="display:inline-block" href="/presentations/{{ $presentation->id }}/edit"><p> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit presentation</p></a>
+                <a style="display:inline-block" href="/posts/{{ $post->id }}/edit"><p> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit post</p></a>
 
-                <form action="{{ action('PresentationController@destroy', ['presentation' => $presentation->id]) }}" method="POST">
+                <form action="{{ action('PostController@destroy', ['post' => $post->id]) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <button type="submit" class="btn btn-default">Delete Presentation</button>
+                    <button type="submit" class="btn btn-default">Delete Post</button>
                 </form>
             @endif
 
-                <h2 class="text-center">{{ $presentation->title }}</h2>
+                <h2 class="text-center">{{ $post->title }}</h2>
                 <hr>
 
-            @if($presentation->video_embed)
-                <div class="text-center">
-                    {!! $presentation->video_embed !!}    
-                </div>
-            @endif
-
-                <p style="word-wrap: break-word;">{{ $presentation->body }}</p>
+                <p style="word-wrap: break-word;">{{ $post->body }}</p>
 
                 <hr>
 
-                <p>Published By: {{ $presentation->publisher->name }}</p>
+                <p>Posted By: {{ $post->owner->name }}</p>
 
-                @if($presentation->edited_by)
-                    <p>Edited By: {{ $presentation->edited_by }}</p>
-                @endif
-
-                @if($presentation->edited_date)
-                    <p>Edited: {{ Carbon\Carbon::parse($presentation->edited_date)->diffForHumans() }}</p>
+                @if($post->edited_date)
+                    <p>Edited: {{ Carbon\Carbon::parse($post->edited_date)->diffForHumans() }}</p>
                 @endif
             </div>
             <!-- <div class="col-md-4"></div> -->
-            @include('partials.modals.reject-presentation')
+            @include('partials.modals.reject-post')
         </div>
     </main>
 
-<!-- Comment form section-->
+    <!-- Comment form section-->
     @if(!Auth::guest())
         <div class="row animate-box">
             <h2 class="text-center">Post a comment</h2>
@@ -94,10 +77,10 @@
             </div>
 
             <div class="col-md-8 col-md-push-1">
-                <form action="{{ action('CommentController@postComment', ['id' => $presentation->id, 'type' => 'presentation']) }}" method="post">
+                <form action="{{ action('CommentController@postComment', ['id' => $post->id, 'type' => 'blog']) }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <textarea placeholder="Comment on {{ $presentation->title }}" name="comment" class="form-control" rows="2"></textarea>
+                        <textarea placeholder="Comment on {{ $post->title }}" name="comment" class="form-control" rows="2"></textarea>
                         @if ($errors->has('comment'))
                             <span class="help-block">{{ $errors->first('comment') }}</span>
                         @endif              
@@ -109,11 +92,10 @@
         </div>
     @endif
 <!-- End comment section -->
-
 <div class="row animate-box">
     <h2 class="text-center">Comments</h2>
     <div class="col-lg-12">
-        @if (!$presentation->comments)
+        @if (!$post->comments)
             <p>There are currently no comments.</p>
         @else
             @foreach($comments as $comment)
@@ -153,7 +135,7 @@
                                 </div>
                             </div>
                         @endforeach                   
-                        <form action="{{ action('CommentController@postReply', ['id' => $presentation->id, 'commentId' => $comment->id, 'type' => 'presentation']) }}" method="post">
+                        <form action="{{ action('CommentController@postReply', ['id' => $post->id, 'commentId' => $comment->id, 'type' => 'blog']) }}" method="post">
                             <div class="form-group{{ $errors->has("reply-{$comment->id}") ? ' has-error' : '' }}">
                                 <textarea name="reply-{{ $comment->id }}" class="form-control" rows="2" placeholder="Reply to this comment"></textarea>
                                 @if ($errors->has("reply-{$comment->id}"))
@@ -175,4 +157,6 @@
         @endif
     </div>
 </div>
+
+
 @endsection

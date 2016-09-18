@@ -11,7 +11,7 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('search', require('./components/Search.vue'));
 Vue.component('meetup', require('./components/NextMeetUp.vue'));
 
 var app = new Vue({

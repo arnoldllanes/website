@@ -31,14 +31,14 @@
                         <div class="image-popup text-center">
                             <div class="post animate-box">
                                 <img src="images/blogicon.png" alt="Product">
-                                @if($latest_presentations)
+                                @if($latest_posts)
                                 <div>
                                     <h3>
-                                        <a href="/post/{{ $latest_presentations->id }}">{{ $latest_presentations->title }}</a>
+                                        <a href="/posts/{{ $latest_posts->id }}">{{ $latest_posts->title }}</a>
                                     </h3>
-                                <!-- <p>{{ str_limit($latest_presentations->body, $limit = 25, $end = '...') }}</p> -->
-                                    <p>Presented by: {{ $latest_presentations->presenter->name }}</p>
-                                    <span><a href="/post/{{ $latest_presentations->id }}">Read Post...</a></span>
+                          
+                                    <p>Presented by: {{ $latest_posts->owner->name }}</p>
+                                    <span><a href="/posts/{{ $latest_posts->id }}">Read Post...</a></span>
                                 </div>
                                 <hr>
                                     <a type="button" class="btn btn-primary" href="/posts">View Blog Archive</a>
@@ -46,7 +46,7 @@
                                 <div class="work-title">
                                     <h3>Sorry!!!</h3>
                                     <p>No blog posts at this time.</p>
-                                    @if(!Auth::guest())
+                                    @if(Auth::user()->isAdmin())
                                         <a type="button" class="btn btn-primary" href="/posts/create">Create Blog
                                             Post</a>
                                     @endif
@@ -72,7 +72,7 @@
                     <div class="fh5co-grid animate-box"
                     style="background-image: url(images/diegodev.png); height:239px">
                     <a class="image-popup text-center" target="__Blank" href="https://www.diegodev.com/">
-                      <div class="work-title">
+                      <div class="work-title" style="top:25%; bottom: 10px">
                         <h3>DiegoDev Group, LLC</h3>
                         <span>A passionate development group dedicated to building secure, standards compliant, and maintainable solutions for our customers. From code to operations.</span>
                       </div>
@@ -83,7 +83,7 @@
                   <div class="fh5co-grid animate-box"
                   style="background-image: url(images/carinet.png); height: 239px">
                   <a class="image-popup text-center" target="__Blank" href="https://www.cari.net/">
-                    <div class="work-title">
+                    <div class="work-title" style="top:25%; bottom: 10px">
                       <h3>CARI.net</h3>
                       <span>San Diego-based CARI.net owns and operates multiple data centers with critical system infrastructure that assures customers of continual uptime.</span>
                     </div>

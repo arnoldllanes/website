@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Presenter extends Model
 {
+    use Searchable;
+    
     protected $fillable = ['name', 'email', 'website'];
 
     /**

@@ -19,18 +19,18 @@
 
 
 <!--
-	//////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////
 
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FREEHTML5.CO
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
+    FREE HTML5 TEMPLATE 
+    DESIGNED & DEVELOPED by FREEHTML5.CO
+        
+    Website:        http://freehtml5.co/
+    Email:          info@freehtml5.co
+    Twitter:        http://twitter.com/fh5co
+    Facebook:       https://www.facebook.com/fh5co
 
-	//////////////////////////////////////////////////////
-	 -->
+    //////////////////////////////////////////////////////
+     -->
 
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content=""/>
@@ -111,8 +111,9 @@
 <body>
 <div class="box-wrap">
     @include('layouts.navigation')
-    @include('partials.flash')
 
+    @include('partials.flash')
+    
     @yield('content')
 
     <footer id="footer" role="contentinfo">

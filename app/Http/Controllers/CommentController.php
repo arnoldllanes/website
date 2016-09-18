@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Models\Post;
 use App\Http\Requests;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -15,25 +16,49 @@ class CommentController extends Controller
 	 * Post a comment to a presentation.
 	 */
 
-    public function postComment(CommentRequest $request, $presentationId) 
+    public function postComment(CommentRequest $request, $id, $type) 
 	{
-		$presentation = Presentation::where('id', $presentationId)->first();
+		$this->postAccordingToCommentType($request, $id, $type);
 
-		$presentation->comments()->create([
-			'user_id' => Auth::user()->id,
-			'body' 	  => $request->input('comment')
-		]);
+		return back()->with([
+	            'flash_message' => 'Thank you for your comment',
+	            'flash_message_important' => true
+	        ]);
+	}
 
-		return redirect()->route('presentations.show', $presentation->id)->with([
-            'flash_message' => 'Thank you for your comment',
-            'flash_message_important' => true
-        ]);
+	/**
+	 * Determines whether to post comment to presentation or to blog
+	 */
+
+	private function postAccordingToCommentType($request, $id, $type)
+	{
+		if($type === 'presentation') {
+			$presentation = Presentation::where('id', $id)->first();
+
+			$presentation->comments()->create([
+				'user_id' => Auth::user()->id,
+				'body' 	  => $request->input('comment'),
+				'flagged' => 0
+			]);
+		}
+
+		if($type === 'blog'){
+			$post = Post::where('id', $id)->first();
+
+			$post->comments()->create([
+				'user_id' => Auth::user()->id,
+				'body' => $request->input('comment'),
+				'flagged' => 0
+			]);
+		}
+
+		return false;
 	}
 
 	/**
 	 * Post a reply to a comment.
 	 */
-	public function postReply(Request $request, $presentationId, $commentId)
+	public function postReply(Request $request, $id, $commentId, $type)
 	{
 		$this->validate($request, [
 				"reply-{$commentId}" => 'required|max:100',
@@ -41,25 +66,62 @@ class CommentController extends Controller
 				'required' => 'The reply body is required.'
 			]);
 
-		$comment = Comment::notReply()->find($commentId);
+		$this->postReplyAccordingToType($request, $id, $commentId, $type);
 
-		if(!$comment) {
-			return redirect()->route('home');
+		return back()->with([
+            'flash_message' => 'Successfully submitted comment.',
+            'flash_message_important' => true
+        ]);;
+
+	}
+
+	/**
+	 * Post reply to comment according to post type.
+	 */
+	private function postReplyAccordingToType($request, $id, $commentId, $type)
+	{
+		if($type === 'presentation') {
+			$comment = Comment::notReply()->find($commentId);
+
+			if(!$comment) {
+				return redirect()->route('home');
+			}
+
+			if(!Auth::user()){
+				return redirect()->route('home');
+			}
+
+			$reply = Comment::create([
+				'user_id'			=> Auth::user()->id,
+				'presentation_id' 	=> $id,
+				'body'				=> $request->input("reply-{$commentId}"),
+				'flagged'    		=> 0
+			]);
+
+			$comment->replies()->save($reply);
 		}
 
-		if(!Auth::user()){
-			return redirect()->route('home');
+		if($type === 'blog') {
+			$comment = Comment::notReply()->find($commentId);
+
+			if(!$comment) {
+				return redirect()->route('home');
+			}
+
+			if(!Auth::user()){
+				return redirect()->route('home');
+			}
+
+			$reply = Comment::create([
+				'user_id'			=> Auth::user()->id,
+				'post_id' 			=> $id,
+				'body'				=> $request->input("reply-{$commentId}"),
+				'flagged'    		=> 0
+			]);
+
+			$comment->replies()->save($reply);
 		}
 
-		$reply = Comment::create([
-			'user_id'			=> Auth::user()->id,
-			'presentation_id' 	=> $presentationId,
-			'body'				=> $request->input("reply-{$commentId}"),
-		]);
-
-		$comment->replies()->save($reply);
-
-		return redirect()->back();
 	}
 
 	/**

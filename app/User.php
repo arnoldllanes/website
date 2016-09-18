@@ -77,6 +77,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Flag', 'user_id');
     }
 
+    /**
+     * Dictate whether user is an admin.
+     */
     public function isAdmin()
     {
         if($this->role === 'admin'){
@@ -84,6 +87,10 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    /**
+     * Dictate whether user is a member.
+     */
     public function isMember()
     {
         if($this->role === 'member'){
@@ -92,11 +99,24 @@ class User extends Authenticatable
         return false;
     }
 
+    /**
+     * Dictate whether the user is a guest.
+     */
     public function isGuest()
     {
         if($this->role === 'guest'){
             return true;
         }
         return false;
+    }
+
+    /**
+     * A user is associated with many blog posts. 
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post', 'user_id');    
     }
 }
