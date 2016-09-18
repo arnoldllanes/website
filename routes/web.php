@@ -34,8 +34,8 @@ Route::resource('tags', 'TagController', ['only' => ['index', 'show', 'store']])
 Route::resource('presenters', 'PresenterController', ['only' => ['index', 'show']]);
 
 // Comments
-Route::post('comment/{postId}/{type}', 'CommentController@postComment');
-Route::post('comment/{presentationId}/{commentId}/reply', 'CommentController@postReply');
+Route::post('comment/{id}/{type}', 'CommentController@postComment');
+Route::post('comment/{id}/{commentId}/{type}/reply', 'CommentController@postReply');
 Route::get('comment/{commentId}/like', 'CommentController@like');
 Route::post('comment/{presentaitonId}/flag', 'CommentController@flag');
 

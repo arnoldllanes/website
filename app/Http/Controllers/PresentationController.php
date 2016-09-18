@@ -41,9 +41,8 @@ class PresentationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Presentation $presentation)
     {
-        $presentation = Presentation::where('id', $id)->firstOrfail();
         $presentation->load('tags', 'publisher');
 
         $comments = $presentation->comments()->notReply()->get();

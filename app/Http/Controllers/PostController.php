@@ -76,7 +76,15 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show')->with('post', $post);
+        $post->load('tags');
+
+        $comments = $post->comments()->notReply()->get();
+
+        if($post->approved === 0 && Auth::user()->isAdmin() === false) {
+            return back();
+        }
+       
+        return view('posts.show')->with('post', $post)->with('comments', $comments);
     }
 
     /**

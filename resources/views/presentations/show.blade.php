@@ -84,7 +84,7 @@
         </div>
     </main>
 
-<!-- Comment form ection-->
+<!-- Comment form section-->
     @if(!Auth::guest())
         <div class="row animate-box">
             <h2 class="text-center">Post a comment</h2>
@@ -94,7 +94,7 @@
             </div>
 
             <div class="col-md-8 col-md-push-1">
-                <form action="{{ action('CommentController@postComment', ['postId' => $presentation->id, 'type' => 'presentation']) }}" method="post">
+                <form action="{{ action('CommentController@postComment', ['id' => $presentation->id, 'type' => 'presentation']) }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <textarea placeholder="Comment on {{ $presentation->title }}" name="comment" class="form-control" rows="2"></textarea>
@@ -153,7 +153,7 @@
                                 </div>
                             </div>
                         @endforeach                   
-                        <form action="{{ action('CommentController@postReply', ['presentationId' => $presentation->id, 'commentId' => $comment->id]) }}" method="post">
+                        <form action="{{ action('CommentController@postReply', ['id' => $presentation->id, 'commentId' => $comment->id, 'type' => 'presentation']) }}" method="post">
                             <div class="form-group{{ $errors->has("reply-{$comment->id}") ? ' has-error' : '' }}">
                                 <textarea name="reply-{{ $comment->id }}" class="form-control" rows="2" placeholder="Reply to this comment"></textarea>
                                 @if ($errors->has("reply-{$comment->id}"))

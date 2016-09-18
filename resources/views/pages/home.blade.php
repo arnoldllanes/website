@@ -72,7 +72,7 @@
                     <div class="fh5co-grid animate-box"
                     style="background-image: url(images/diegodev.png); height:239px">
                     <a class="image-popup text-center" target="__Blank" href="https://www.diegodev.com/">
-                      <div class="work-title">
+                      <div class="work-title" style="top:25%; bottom: 10px">
                         <h3>DiegoDev Group, LLC</h3>
                         <span>A passionate development group dedicated to building secure, standards compliant, and maintainable solutions for our customers. From code to operations.</span>
                       </div>
@@ -83,7 +83,7 @@
                   <div class="fh5co-grid animate-box"
                   style="background-image: url(images/carinet.png); height: 239px">
                   <a class="image-popup text-center" target="__Blank" href="https://www.cari.net/">
-                    <div class="work-title">
+                    <div class="work-title" style="top:25%; bottom: 10px">
                       <h3>CARI.net</h3>
                       <span>San Diego-based CARI.net owns and operates multiple data centers with critical system infrastructure that assures customers of continual uptime.</span>
                     </div>

@@ -20,7 +20,12 @@ class Comment extends Model
 	 */
 	public function presentation()
 	{
-		return $this->belongsTo('App\Models\Presentation');
+		return $this->belongsTo('App\Models\Presentation', 'presentation_id');
+	}
+
+	public function post()
+	{
+		return $this->belongsTo('App\Models\Post', 'post_id');
 	}
 
 	/**
@@ -59,11 +64,4 @@ class Comment extends Model
 		return $this->morphMany('App\Models\Like', 'likeable');
 	}
 
-	/**
-     * Get all of the comments flags.
-     */
-	public function flags()
-	{
-		return $this->morphMany('App\Models\Flag', 'flagable');
-	}
 }
